@@ -33,7 +33,7 @@
                     </form>
                   </div>
 
-                  &nbsp; <button class="btn btn-sm btn-primary" onclick="window.location='{{URL('admin/users/create')}}'">发布信息</button>
+                  &nbsp; <button class="btn btn-sm btn-primary" onclick="window.location='{{URL('admin/adminuser/create')}}'">发布信息</button>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table class="table table-bordered">
@@ -55,8 +55,7 @@
                             <td>{{ $vo->created_at }}</td>
                             <td>{{ $vo->updated_at }}</td>
                             <td><button class="btn btn-xs btn-danger" onclick="doDel({{ $vo->id }})">删除</button> 
-                               <button class="btn btn-xs btn-primary" onclick="window.location='{{URL('/admin/users')}}/{{ $vo->id }}/edit'">编辑</button>
-                               <button class="btn btn-xs btn-success" onclick="loadRole({{ $vo->id}},'{{ $vo->name}}')">分配角色</button></td>
+                               <button class="btn btn-xs btn-primary" onclick="window.location='{{URL('/admin/adminuser')}}/{{ $vo->id }}/edit'">编辑</button>
                         </tr>
                     @endforeach
                     
@@ -87,7 +86,7 @@
             <h4 class="modal-title" id="exampleModalLabel">New message</h4>
           </div>
           <div class="modal-body">
-           <!-- 此处填充 --->
+           <!-- 在此处填充 -->
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>

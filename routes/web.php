@@ -21,5 +21,7 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 	Route::get('/',"Admin\IndexController@index");
 	//后台用户管理
 	Route::resource('adminuser','Admin\AdminUserController');
-	
+
+	//购物车管理
+	Route::get('shopcat','Admin\ShopCatController@index');
 });
