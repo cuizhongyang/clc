@@ -32,15 +32,18 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 
 	//后台首页
 	Route::resource('adminuser','Admin\AdminUserController');//用户管理
-    Route::resource('users', 'Admin\UsersController');//会员管理
-    Route::resource('role', 'Admin\RoleController');//角色管理
-    Route::resource('auth', 'Admin\AuthController');//节点管理
+    	Route::resource('users', 'Admin\UsersController');//会员管理
+   	Route::resource('role', 'Admin\RoleController');//角色管理
+   	Route::resource('auth', 'Admin\AuthController');//节点管理
     
-    Route::get('adminuser/loadRole/{uid}',"Admin\AdminUserController@loadRole");//获取角色
-    Route::post('adminuser/saveRole',"Admin\AdminUserController@saveRole");//更改角色
+   	Route::get('adminuser/loadRole/{uid}',"Admin\AdminUserController@loadRole");//获取角色
+    	Route::post('adminuser/saveRole',"Admin\AdminUserController@saveRole");//更改角色
     
-    Route::get('role/loadAuth/{rid}',"Admin\RoleController@loadAuth");//节点
-    Route::post('role/saveAuth',"Admin\RoleController@saveAuth");
-	
+    	Route::get('role/loadAuth/{rid}',"Admin\RoleController@loadAuth");//节点
+    	Route::post('role/saveAuth',"Admin\RoleController@saveAuth");
 
+	//后台商品类别管理
+	Route::resource('category','Admin\CategoryController'); 
+	//后台商品信息管理
+	Route::resource('goods','Admin\GoodsController'); 
 });

@@ -75,13 +75,7 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header">主导航</li>
-            <li class="active treeview">
-
-              <a href="{{ url("admin/shopcat") }}">
-                <i class="fa fa-gittip"></i><span>购物车管理</span>
-              </a>
-	    </li>
-	     <li class="active treeview">
+           	     <li class="active treeview">
               <a href="#">
                 <i class="fa fa-gittip"></i><span>用户管理</span><i class="fa fa-angle-left pull-right"></i>
               </a>
@@ -98,10 +92,15 @@
                 <i class="fa fa-bomb"></i> <span> 订单管理</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li class="active"><a href="{{url('admin/type')}}"><i class="fa fa-circle-o"></i> 浏览类别</a></li>
-                <li><a href="{{url('admin/type/create')}}"><i class="fa fa-circle-o"></i> 添加类别</a></li>
+                <li class="active"><a href="{{url('admin/category')}}"><i class="fa fa-circle-o"></i> 浏览类别</a></li>
               </ul>
-            </li> 
+	    </li> 
+	    <li class="active treeview">
+              <a href="{{ url("admin/shopcat") }}">
+                <i class="fa fa-gittip"></i><span>购物车管理</span>
+              </a>
+	    </li>
+
           </ul>
         </section>
         <!-- /.sidebar -->
