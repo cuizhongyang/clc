@@ -9,4 +9,5 @@ class Auth extends Model{
 protected $table= 'auth';  
 //指定主键  
 protected $primaryKey= 'id';  
+public $timestamps = false;
 } 

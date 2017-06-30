@@ -11,8 +11,7 @@ class AuthController extends CommonController
     //分页浏览信息
     public function index(Request $request)
     {
-        //dd('123123');
-        $db = \DB::table("auth");
+        
         //判断并封装搜索条件
         $where = array();
         if(!empty($_GET['name'])){
@@ -57,7 +56,7 @@ class AuthController extends CommonController
         //dd($data);
         //$data['created_at'] = time();
         //$data['updated_at'] = time();
-        $id = \DB::table("auth")->insertGetId($data);
+        $id = Auth::insertGetId($data);
         
         if($id>0){
             return redirect('admin/auth')->with("err","添加成功!");
@@ -69,7 +68,7 @@ class AuthController extends CommonController
     //执行删除
     public function destroy($id)
     {
-        \DB::table("auth")->where("id",$id)->delete();
+        Auth::where("id",$id)->delete();
 
         return redirect('admin/auth')->with("err","删除成功!");
     }
@@ -77,7 +76,7 @@ class AuthController extends CommonController
     //加载修改表单
     public function edit($id)
     {
-        $auth = \DB::table("auth")->where("id",$id)->first(); //获取要编辑的信息
+        $auth = Auth::where("id",$id)->first(); //获取要编辑的信息
         //dd($auth);
         return view("admin.auth.edit",["vo"=>$auth]);
     }
@@ -91,7 +90,7 @@ class AuthController extends CommonController
         ]);
         $data = $request->only("name","method","url");
         //$data['updated_at'] = time();
-        $id = \DB::table("auth")->where("id",$id)->update($data);
+        $id = Auth::where("id",$id)->update($data);
         
         if($id>0){
             return redirect("admin/auth")->with("err","修改成功!");

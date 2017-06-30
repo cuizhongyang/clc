@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Gregwar\Captcha\CaptchaBuilder;
+use App\Http\Model\Users;
 
 class LoginController extends Controller
 {
@@ -27,7 +28,7 @@ class LoginController extends Controller
         $email = $request->input("email");
         $password = $request->input("password");
         //获取对应用户信息
-        $user = \DB::table("users")->where("email",$email)->first();
+        $user = Users::where("email",$email)->first();
         if(!empty($user)){
             //判断密码
             if(md5($password)==$user->password){
