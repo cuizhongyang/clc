@@ -6,6 +6,7 @@
     <section class="content-header">
           <h1>
             信息输出表
+            <small></small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
@@ -20,45 +21,38 @@
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header with-border">
-                  <h3 class="box-title"><i class="fa fa-th"></i> 用户信息管理</h3>
+                  <h3 class="box-title"><i class="fa fa-th"></i> 角色信息管理</h3>
                   <!--搜索-->
                   <div class="box-tools">
-                    <form action="{{url('admin/adminuser')}}" method="get">
+                    <form action="{{url('admin/role')}}" method="get">
                     <div class="input-group" style="width: 150px;">
-                      <input type="text" name="name" class="form-control input-sm pull-right" placeholder="姓名"/>
+                      <input type="text" name="name" class="form-control input-sm pull-right" placeholder="角色"/>
                       <div class="input-group-btn">
                         <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
                       </div>
                     </div>
                     </form>
                   </div>
-                  &nbsp; <button class="btn btn-sm btn-primary" onclick="window.location='{{URL('admin/adminuser/create')}}'">发布信息</button>
-                  &nbsp; <button class="btn btn-sm btn-primary" onclick="window.location='{{URL('admin/adminuser/create')}}'">添加用户</button>
+                  <button class="btn btn-primary" onclick="window.location='{{URL('admin/role/create')}}'">添加角色</button>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table class="table table-bordered">
                     <tr>
                       <th style="width:60px">id号</th>
-                      <th>姓名</th>
-                      <th>手机</th>
-                      <th>角色</th>
+                      <th>角色名称</th>
                       <th>添加时间</th>
-                      <th>最后修改时间</th>
+                      <th>修改时间</th>
                       <th style="width: 170px">操作</th>
                     </tr>
-                    @foreach($list as $vo) 
+                    @foreach($list as $vo)
                         <tr>
                             <td>{{ $vo->id }}</td>
                             <td>{{ $vo->name }}</td>
-                            <td>{{ $vo->phone }}</td>
-                            <td>{{ $vo->role }}</td>
                             <td>{{ $vo->addtime }}</td>
                             <td>{{ $vo->updated_at }}</td>
                             <td><button class="btn btn-xs btn-danger" onclick="doDel({{ $vo->id }})">删除</button> 
-                               <button class="btn btn-xs btn-primary" onclick="window.location='{{URL('/admin/adminuser')}}/{{ $vo->id }}/edit'">编辑</button>
-
-                               <button class="btn btn-xs btn-success" onclick="loadRole('{{ $vo->id }}','{{ $vo->name }}')">分配角色</button></td>
-
+                               <button class="btn btn-xs btn-primary" onclick="window.location='{{URL('/admin/role')}}/{{ $vo->id }}/edit'">编辑</button> 
+                               <button class="btn btn-xs btn-success" onclick="loadAuth('{{ $vo->id }}','{{ $vo->name }}')">分配节点</button></td>
                         </tr>
                     @endforeach
                     
@@ -76,7 +70,7 @@
     @endsection
     
     @section('myscript')
-    <form action="/users/" method="post" name="myform" style="display:none;">
+    <form action="/role/" method="post" name="myform" style="display:none;">
             <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
             <input type="hidden" name="_method" value="delete"/>
            
@@ -89,11 +83,11 @@
             <h4 class="modal-title" id="exampleModalLabel">New message</h4>
           </div>
           <div class="modal-body">
-           <!-- 在此处填充 -->
+           <!-- 此处填充 -->
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-            <button type="button" onclick="saveRole()" class="btn btn-primary">保存</button>
+            <button type="button" onclick="saveAuth()" class="btn btn-primary">保存</button>
           </div>
         </div>
       </div>
@@ -103,34 +97,33 @@
             Modal.confirm({msg: "是否删除信息？"}).on(function(e){
                 if(e){
                    var form = document.myform;
-                    form.action = "{{URL('/admin/adminuser')}}/"+id;
+                    form.action = "{{URL('/admin/role')}}/"+id;
                     form.submit(); 
                 }
               });
         }
         
-        //加载角色信息
-        function loadRole(uid,name){
-            $("#exampleModalLabel").html(name+"的角色分配");
+        function loadAuth(rid,name){
+            $("#exampleModalLabel").html(name+"的操作节点管理");
             $("#exampleModal").modal("show");
             $.ajax({
-                url:"{{URL('admin/adminuser/loadRole')}}/"+uid,
+                url:"{{URL('admin/role/loadAuth')}}/"+rid,
                 type:"get",
                 dataType:"html",
                 async:true,
                 success:function(data){
-                  $("#exampleModal .modal-body").html(data);
+                  $("#exampleModal .modal-body").html(data);   
                 },
              });
         }
         
-        //保存角色信息
-        function saveRole(){
+        //保存节点信息
+        function saveAuth(){
             $.ajax({
-                url:"{{URL('admin/adminuser/saveRole')}}",
+                url:"{{URL('admin/role/saveAuth')}}",
                 type:"post",
                 dataType:"html",
-                data:$("#rolelistform").serialize() ,
+                data:$("#authlistform").serialize() ,
                 async:true,
                 success:function(data){
                     $('#exampleModal').modal('hide');
@@ -139,5 +132,6 @@
              });
              
         }
+        
     </script>
     @endsection

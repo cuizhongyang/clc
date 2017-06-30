@@ -75,22 +75,22 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header">主导航</li>
-            
             <li class="active treeview">
-              <a href="#">
-                <i class="fa fa-bomb"></i> <span> 用户信息管理</span> <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">   
-                <li class="active"><a href="{{url('admin/users')}}"><i class="fa fa-circle-o"></i>前台用户管理</a></li>
-                <li><a href="{{url('admin/adminuser')}}"><i class="fa fa-circle-o"></i>后台用户管理</a></li>
-                <li><a href="{{url('admin/adminuser/create')}}"><i class="fa fa-circle-o"></i>添加后台用户</a></li>
-              </ul>         
-            </li>
-  
-            <li class="active treeview">
+
               <a href="{{ url("admin/shopcat") }}">
                 <i class="fa fa-gittip"></i><span>购物车管理</span>
               </a>
+	    </li>
+	     <li class="active treeview">
+              <a href="#">
+                <i class="fa fa-gittip"></i><span>用户管理</span><i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li class="active"><a href="{{URL('admin/users')}}"><i class="fa fa-youtube-play"></i> 前台会员管理</a></li>
+                <li class="active"><a href="{{URL('admin/adminuser')}}"><i class="fa fa-youtube-play"></i> 后台用户管理</a></li>
+                <li class="active"><a href="{{URL('admin/role')}}"><i class="fa fa-youtube-play"></i> 角色管理</a></li>
+                <li class="active"><a href="{{URL('admin/auth')}}"><i class="fa fa-youtube-play"></i> 节点管理</a></li>
+              </ul>
             </li>
             
             <li class="active treeview">

@@ -41,14 +41,6 @@
                         <input type="text" value="{{ $k['phone'] }}" name="phone" class="form-control" id="inputEmail3" placeholder="手机号">
                       </div>
                     </div>
-                     <div class="form-group">
-                      <label for="inputEmail3" class="col-sm-2 control-label">角色：</label>
-                      <div class="col-sm-4">
-                        <select name="role" class="form-control" id="inputEmail3">
-                          <option value=""><option>
-                        <select>
-                      </div>
-                    </div>
                      
                  
                   <div class="box-footer">

@@ -20,10 +20,10 @@
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header with-border">
-                  <h3 class="box-title"><i class="fa fa-th"></i> 用户信息管理</h3>
+                  <h3 class="box-title"><i class="fa fa-th"></i> 会员信息管理</h3>
                   <!--搜索-->
                   <div class="box-tools">
-                    <form action="{{url('admin/adminuser')}}" method="get">
+                    <form action="{{url('admin/users')}}" method="get">
                     <div class="input-group" style="width: 150px;">
                       <input type="text" name="name" class="form-control input-sm pull-right" placeholder="姓名"/>
                       <div class="input-group-btn">
@@ -32,8 +32,8 @@
                     </div>
                     </form>
                   </div>
-                  &nbsp; <button class="btn btn-sm btn-primary" onclick="window.location='{{URL('admin/adminuser/create')}}'">发布信息</button>
-                  &nbsp; <button class="btn btn-sm btn-primary" onclick="window.location='{{URL('admin/adminuser/create')}}'">添加用户</button>
+
+                  
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table class="table table-bordered">
@@ -41,9 +41,11 @@
                       <th style="width:60px">id号</th>
                       <th>姓名</th>
                       <th>手机</th>
-                      <th>角色</th>
-                      <th>添加时间</th>
-                      <th>最后修改时间</th>
+                      <th>头像</th>
+                      <th>性别</th>
+                      <th>年龄</th>
+                      <th>邮箱</th>
+                      <th>注册时间</th>
                       <th style="width: 170px">操作</th>
                     </tr>
                     @foreach($list as $vo) 
@@ -51,14 +53,14 @@
                             <td>{{ $vo->id }}</td>
                             <td>{{ $vo->name }}</td>
                             <td>{{ $vo->phone }}</td>
-                            <td>{{ $vo->role }}</td>
+                            <td>{{ $vo->picname }}</td>
+                            <td>{{ $vo->sex }}</td>
+                            <td>{{ $vo->age }}</td>
+                            <td>{{ $vo->email }}</td>
                             <td>{{ $vo->addtime }}</td>
-                            <td>{{ $vo->updated_at }}</td>
-                            <td><button class="btn btn-xs btn-danger" onclick="doDel({{ $vo->id }})">删除</button> 
-                               <button class="btn btn-xs btn-primary" onclick="window.location='{{URL('/admin/adminuser')}}/{{ $vo->id }}/edit'">编辑</button>
-
-                               <button class="btn btn-xs btn-success" onclick="loadRole('{{ $vo->id }}','{{ $vo->name }}')">分配角色</button></td>
-
+                            <td><!--<button class="btn btn-xs btn-danger" onclick="doDel({{ $vo->id }})"></button> -->
+                               <button class="btn btn-xs btn-primary" onclick="window.location='{{URL('/admin/users')}}/{{ $vo->id }}/edit'">更改状态</button>
+                               </td>
                         </tr>
                     @endforeach
                     
@@ -98,46 +100,5 @@
         </div>
       </div>
     </div>
-    <script type="text/javascript">
-        function doDel(id){
-            Modal.confirm({msg: "是否删除信息？"}).on(function(e){
-                if(e){
-                   var form = document.myform;
-                    form.action = "{{URL('/admin/adminuser')}}/"+id;
-                    form.submit(); 
-                }
-              });
-        }
-        
-        //加载角色信息
-        function loadRole(uid,name){
-            $("#exampleModalLabel").html(name+"的角色分配");
-            $("#exampleModal").modal("show");
-            $.ajax({
-                url:"{{URL('admin/adminuser/loadRole')}}/"+uid,
-                type:"get",
-                dataType:"html",
-                async:true,
-                success:function(data){
-                  $("#exampleModal .modal-body").html(data);
-                },
-             });
-        }
-        
-        //保存角色信息
-        function saveRole(){
-            $.ajax({
-                url:"{{URL('admin/adminuser/saveRole')}}",
-                type:"post",
-                dataType:"html",
-                data:$("#rolelistform").serialize() ,
-                async:true,
-                success:function(data){
-                    $('#exampleModal').modal('hide');
-                    Modal.alert({msg:data,title: ' 信息提示',btnok: '确定',btncl:'取消'});
-                },
-             });
-             
-        }
-    </script>
+    
     @endsection

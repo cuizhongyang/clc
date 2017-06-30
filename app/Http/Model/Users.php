@@ -4,11 +4,10 @@ namespace App\Http\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AdminUser extends Model
+class Users extends Model
 {
     //与模型关联的adminuser表
-    protected $adminuser = 'admin_users';
-    
+    protected $adminuser = 'users';
     public $timestamps = false;
 
 }
