@@ -75,7 +75,7 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header">主导航</li>
-           	     <li class="active treeview">
+           	<li class="active treeview">
               <a href="#">
                 <i class="fa fa-gittip"></i><span>用户管理</span><i class="fa fa-angle-left pull-right"></i>
               </a>
@@ -92,14 +92,53 @@
                 <i class="fa fa-bomb"></i> <span> 订单管理</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li class="active"><a href="{{url('admin/category')}}"><i class="fa fa-circle-o"></i> 浏览类别</a></li>
+                <!-- 订单总览 -->
+                <li class="active"><a href="{{url('admin/orders')}}"><i class="fa fa-circle-o"></i> 用户订单总览</a></li>
+                <!-- 订单详情开始 -->
+                <li class="active treeview">
+                  <a href="#">
+                     <i class="fa fa-bomb"></i> <span> 订单详情</span> <i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu">
+                     <li class="active"><a href="{{url('admin/orderdetail/index1')}}"><i class="fa fa-circle-o"></i>未付款订单 </a></li>
+                     <li class="active"><a href="{{url('admin/orderdetail/index2')}}"><i class="fa fa-circle-o"></i>待发货订单 </a></li>
+                     <li class="active"><a href="{{url('admin/orderdetail/index3')}}"><i class="fa fa-circle-o"></i>待收货订单 </a></li>
+                     <li class="active"><a href="{{url('admin/orderdetail/index4')}}"><i class="fa fa-circle-o"></i>待评价订单 </a></li>
+                  </ul>
+                </li> 
+                <!-- 订单详情结束 -->
+                <!-- 退货详情 -->
+                <li class="active treeview">
+                  <a href="#">
+                     <i class="fa fa-bomb"></i> <span> 退货详情</span> <i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu">
+                     <li class="active"><a href="{{url('admin/goodsreturn/index1')}}"><i class="fa fa-circle-o"></i>待审核 </a></li>
+                     <li class="active"><a href="{{url('admin/goodsreturn/index2')}}"><i class="fa fa-circle-o"></i>审核成功 </a></li>
+                     <li class="active"><a href="{{url('admin/goodsreturn/index3')}}"><i class="fa fa-circle-o"></i>审核失败 </a></li>
+                     <li class="active"><a href="{{url('admin/goodsreturn/index4')}}"><i class="fa fa-circle-o"></i>退款成功 </a></li>
+                  </ul>
+                </li> 
+                <!-- 退货详情结束 -->
               </ul>
-	    </li> 
-	    <li class="active treeview">
+	          </li> 
+	          <li class="active treeview">
               <a href="{{ url("admin/shopcat") }}">
                 <i class="fa fa-gittip"></i><span>购物车管理</span>
               </a>
-	    </li>
+	          </li>
+            <!-- 网站配置 -->
+            <li class="active treeview">
+              <a href="#">
+                <i class="fa fa-gittip"></i><span>网站配置</span><i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li class="active"><a href="{{URL('admin/webconfig')}}"><i class="fa fa-youtube-play"></i> 基础设置</a></li>
+                <li class="active"><a href="{{URL('admin/banner')}}"><i class="fa fa-youtube-play"></i> 轮播图管理</a></li>
+                
+                <li class="active"><a href="{{URL('admin/link')}}"><i class="fa fa-youtube-play"></i> 友情链接管理</a></li>
+              </ul>
+            </li>
 
           </ul>
         </section>
@@ -189,6 +228,7 @@
     <script src="{{asset('myadmin/bootstrap/js/xdl-modal-alert-confirm.js')}}" type="text/javascript"></script> 
     <!-- AdminLTE 用于演示目的 -->
     <script src="{{asset('myadmin/dist/js/demo.js')}}" type="text/javascript"></script>
+    
     
     @if(session("err"))
         <script type="text/javascript">
