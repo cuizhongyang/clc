@@ -25,30 +25,30 @@
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 <form action="{{url('admin/adminuser')}}" method="post" class="form-horizontal">
-                  <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                     {{ csrf_field() }}
                   <div class="box-body">
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">姓名：</label>
                       <div class="col-sm-4">
-                        <input type="text" name="name" class="form-control" id="inputEmail3" placeholder="姓名">
+                        <input type="text" name="name" value="{{old('name')}}" class="form-control" id="inputEmail3" placeholder="姓名">
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">密码：</label>
                       <div class="col-sm-4">
-                        <input type="password" name="password" class="form-control" id="inputEmail3" placeholder="密码">
+                        <input type="password" name="password" value="{{old('password')}}" class="form-control" id="inputEmail3" placeholder="密码">
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">确认密码：</label>
                       <div class="col-sm-4">
-                        <input type="password" name="repassword" class="form-control" id="inputEmail3" placeholder="确认密码">
+                        <input type="password" name="repassword" value="{{old('repassword')}}" class="form-control" id="inputEmail3" placeholder="确认密码">
                       </div>
                     </div>
                      <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">手机号：</label>
                       <div class="col-sm-4">
-                        <input type="text" name="phone" class="form-control" id="inputEmail3" placeholder="手机号">
+                        <input type="text" name="phone" value="{{old('phone')}}" class="form-control" id="inputEmail3" placeholder="手机号">
                       </div>
                     </div>
                      
@@ -59,7 +59,7 @@
           						  <button type="submit" class="btn btn-primary">添加</button>
                       </div>
           					<div class="col-sm-1">
-          						<button type="submit" class="btn btn-primary">重置</button>
+          						<button type="reset" class="btn btn-primary">重置</button>
           					</div>
                   </div><!-- /.box-footer -->
                 </form>

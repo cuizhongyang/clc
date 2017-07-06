@@ -56,7 +56,7 @@
 						<button type="submit" class="btn btn-primary">保存</button>
                     </div>
 					<div class="col-sm-1">
-						<button type="submit" class="btn btn-primary">重置</button>
+						<button type="reset" class="btn btn-primary">重置</button>
 					</div>
                   </div><!-- /.box-footer -->
                 </form>

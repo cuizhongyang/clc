@@ -10,16 +10,39 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//前台首页
+Route::get('/',"Home\IndexController@index");
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//前台登录
+Route::get('/home/login',"Home\LoginController@login");
+//执行登录
+Route::post('/home/dologin',"Home\LoginController@dologin");
+//个人中心
+Route::get('/home/center',"Home\CenterController@index");
+//个人资料
+Route::get('/home/center/information',"Home\CenterController@information");
+//收货地址
+Route::get('/home/center/address',"Home\CenterController@address");
+//修改资料
+Route::post('/home/center/update/{id}',"Home\CenterController@update");
+//上传头像
+Route::post('/home/center/upload',"Home\CenterController@upload");
+//执行退出
+Route::get('/home/loginout',"Home\LoginController@loginout");
+
+//前台注册
+Route::get('/home/register',"Home\LoginController@register");
+Route::post('/home/doregister',"Home\LoginController@doregister");
+
 
 Route::get('/admin/login',"Admin\LoginController@login"); //加载后台登录界面
 Route::post('/admin/dologin',"Admin\LoginController@doLogin"); //执行后台登录
 Route::get('/admin/logout',"Admin\LoginController@logout"); //执行退出
 Route::get('/admin/getcode',"Admin\LoginController@getCode"); //加载验证码
 Route::post('/admin/upload','Admin\BannerController@upload');//图片上传
+
+
+
 //网站后台路由
 Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 
@@ -63,7 +86,7 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 	Route::resource('link','Admin\LinkController');
 	//后台首页
 	Route::resource('adminuser','Admin\AdminUserController');//用户管理
-    Route::resource('users', 'Admin\UsersController');//会员管理
+	Route::resource('users', 'Admin\UsersController');//会员管理
    	Route::resource('role', 'Admin\RoleController');//角色管理
    	Route::resource('auth', 'Admin\AuthController');//节点管理
     

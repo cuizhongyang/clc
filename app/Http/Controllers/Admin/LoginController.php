@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Gregwar\Captcha\CaptchaBuilder;
 use App\Http\Model\Users;
+use App\Http\Model\Adminuser;
+use Hash;
 
 class LoginController extends Controller
 {
@@ -25,13 +27,15 @@ class LoginController extends Controller
         }
         
         //执行登陆判断
-        $email = $request->input("email");
+        $email = $request->input("name");
         $password = $request->input("password");
         //获取对应用户信息
-        $user = Users::where("email",$email)->first();
+        $user = Adminuser::where("name",$email)->first();
+        //dd($user->password);
         if(!empty($user)){
             //判断密码
-            if(md5($password)==$user->password){
+            if(Hash::check($password,$user->password)){
+                //dd($user->password);
                 //存储session跳转页面
                 session()->set("adminuser",$user);
                 return redirect("admin");

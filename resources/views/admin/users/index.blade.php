@@ -46,6 +46,7 @@
                       <th>年龄</th>
                       <th>邮箱</th>
                       <th>注册时间</th>
+                      <th>状态</th>
                       <th style="width: 170px">操作</th>
                     </tr>
                     @foreach($list as $vo) 
@@ -53,11 +54,12 @@
                             <td>{{ $vo->id }}</td>
                             <td>{{ $vo->name }}</td>
                             <td>{{ $vo->phone }}</td>
-                            <td>{{ $vo->picname }}</td>
-                            <td>{{ $vo->sex }}</td>
+                            <td><img style="width:50px;height:50px;" src="/{{ $vo->picname }} "/></td>
+                            <td>{{ ($vo->sex == 1)?"男":"女" }}</td>
                             <td>{{ $vo->age }}</td>
                             <td>{{ $vo->email }}</td>
                             <td>{{ $vo->addtime }}</td>
+                            <td>{{ ($vo->status == 1)?"已封禁":"使用中" }}</td>
                             <td><!--<button class="btn btn-xs btn-danger" onclick="doDel({{ $vo->id }})"></button> -->
                                <button class="btn btn-xs btn-primary" onclick="window.location='{{URL('/admin/users')}}/{{ $vo->id }}/edit'">更改状态</button>
                                </td>

@@ -48,8 +48,9 @@ class RoleController extends CommonController
     {
         //表单验证
         $this->validate($request, [
-            'name' => 'required|max:16',
-        ]);
+            'name' => 'required|between:2,18',
+        ],['name.required' => '角色不能为空！',
+        'name.between'=>'角色名必须为2到18位！',]);
        
         //获取指定的部分数据
         $data = $request->only("name");
@@ -58,7 +59,7 @@ class RoleController extends CommonController
         $id = Role::insertGetId($data);
         
         if($id>0){
-            return redirect('admin/role');
+            return redirect('admin/role')->with('err', '添加成功！');;
         }else{
            return back()->with("err","添加失败!");
         }
@@ -69,7 +70,7 @@ class RoleController extends CommonController
     {
         Role::where("id",$id)->delete();
 
-        return redirect('admin/role');
+        return redirect('admin/role')->with('err', '已删除！');;
     }
     
     //加载修改表单
@@ -84,14 +85,15 @@ class RoleController extends CommonController
     {
         //表单验证
         $this->validate($request, [
-            'name' => 'required|max:16',
-        ]);
+            'name' => 'required|between:2,18',
+        ],['name.required' => '角色不能为空！',
+        'name.between' => '角色名必须为2到18位！']);
         $data = $request->only("name");
         $data['updated_at'] = date("Y-m-d H:i:s",time());
         $id = Role::where("id",$id)->update($data);
         
         if($id>0){
-            return redirect('admin/role');
+            return redirect('admin/role')->with('err', '修改成功！');
         }else{
             return back()->with("err","修改失败!");
         }

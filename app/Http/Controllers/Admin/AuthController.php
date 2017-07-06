@@ -48,8 +48,9 @@ class AuthController extends CommonController
     {
         //表单验证
         $this->validate($request, [
-            'name' => 'required|max:16',
-        ]);
+            'name' => 'required|between:2,18',
+        ],['name.required' => '节点名不能为空！',
+        'name.between' => '节点名必须为2到18位！']);
        
         //获取指定的部分数据
         $data = $request->only("name","method","url");
@@ -85,9 +86,11 @@ class AuthController extends CommonController
     public function update($id,Request $request)
     {
         //表单验证
-        $this->validate($request, [
-            'name' => 'required|max:16',
-        ]);
+         $this->validate($request, [
+            'name' => 'required|between:2,18',
+        ],['name.required' => '节点名不能为空！',
+        'name.between' => '节点名必须为2到18位！']);
+        
         $data = $request->only("name","method","url");
         //$data['updated_at'] = time();
         $id = Auth::where("id",$id)->update($data);

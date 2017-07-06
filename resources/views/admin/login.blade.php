@@ -29,22 +29,22 @@
         @if(session("msg"))
             <p class="login-box-msg" style="color:red;">{{session("msg")}}</p>
         @else
-            <p class="login-box-msg">Sign in to start your session</p>
+            <p class="login-box-msg"></p>
         @endif
         <form action="{{url('admin/dologin')}}" method="post">
           <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
           <div class="form-group has-feedback">
-            <input type="email" class="form-control" name="email" placeholder="Email"/>
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            <input type="text" class="form-control" name="name" placeholder="姓名"/>
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input type="password" name="password" class="form-control" placeholder="Password"/>
+            <input type="password" name="password" class="form-control" placeholder="密码"/>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="row">
           <div class="col-xs-6"> 
               <div class="form-group has-feedback" style="width:140px;">
-                <input type="text" name="mycode" class="form-control" placeholder="code"/>
+                <input type="text" name="mycode" class="form-control" placeholder="验证码"/>
                 <span class="glyphicon glyphicon-th form-control-feedback"></span>
               </div>
           </div>
@@ -56,7 +56,7 @@
             <div class="col-xs-8">    
               <div class="checkbox icheck">
                 <label>
-                  <input type="checkbox"> Remember Me
+                  <input type="checkbox"> &nbsp;&nbsp;&nbsp;&nbsp;记住账号
                 </label>
               </div>                        
             </div><!-- /.col -->
@@ -67,7 +67,6 @@
         </form>
 
         <a href="#" style="font-size:12px;">忘记密码</a>&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="register.html" class="text-center" style="font-size:12px;">注册会员</a>
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->

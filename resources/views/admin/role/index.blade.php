@@ -21,7 +21,7 @@
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header with-border">
-                  <h3 class="box-title"><i class="fa fa-th"></i> 角色信息管理</h3>
+                  <h3 class="box-title"><i class="fa fa-th"></i> &nbsp;&nbsp;角色信息管理</h3>
                   <!--搜索-->
                   <div class="box-tools">
                     <form action="{{url('admin/role')}}" method="get">
@@ -33,7 +33,7 @@
                     </div>
                     </form>
                   </div>
-                  <button class="btn btn-primary" onclick="window.location='{{URL('admin/role/create')}}'">添加角色</button>
+                  &nbsp;&nbsp;<button class="btn btn-primary" onclick="window.location='{{URL('admin/role/create')}}'"> 添加角色</button>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table class="table table-bordered">

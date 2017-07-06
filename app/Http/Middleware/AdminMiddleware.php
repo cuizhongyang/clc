@@ -15,6 +15,11 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        //判断后台用户是否没有登录
+        if(!$request->session()->has('adminuser')){
+            return redirect('admin/login');
+        }
+        
+        return $next($request);//通过
     }
 }

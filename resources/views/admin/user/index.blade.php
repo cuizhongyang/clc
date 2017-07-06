@@ -32,7 +32,6 @@
                     </div>
                     </form>
                   </div>
-                  &nbsp; <button class="btn btn-sm btn-primary" onclick="window.location='{{URL('admin/adminuser/create')}}'">发布信息</button>
                   &nbsp; <button class="btn btn-sm btn-primary" onclick="window.location='{{URL('admin/adminuser/create')}}'">添加用户</button>
                 </div><!-- /.box-header -->
                 <div class="box-body">
@@ -41,7 +40,6 @@
                       <th style="width:60px">id号</th>
                       <th>姓名</th>
                       <th>手机</th>
-                      <th>角色</th>
                       <th>添加时间</th>
                       <th>最后修改时间</th>
                       <th style="width: 170px">操作</th>
@@ -51,7 +49,6 @@
                             <td>{{ $vo->id }}</td>
                             <td>{{ $vo->name }}</td>
                             <td>{{ $vo->phone }}</td>
-                            <td>{{ $vo->role }}</td>
                             <td>{{ $vo->addtime }}</td>
                             <td>{{ $vo->updated_at }}</td>
                             <td><button class="btn btn-xs btn-danger" onclick="doDel({{ $vo->id }})">删除</button> 

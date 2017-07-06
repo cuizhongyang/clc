@@ -66,7 +66,7 @@
               <img src="{{asset('myadmin/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-              <p>用户名</p>
+              <p>{{ session('adminuser')->name }}</p>
 
               <a href="{{url('admin/logout')}}"><i class="fa fa-circle text-success"></i>退出</a>
             </div>
@@ -82,8 +82,13 @@
               <ul class="treeview-menu">
                 <li class="active"><a href="{{URL('admin/users')}}"><i class="fa fa-youtube-play"></i> 前台会员管理</a></li>
                 <li class="active"><a href="{{URL('admin/adminuser')}}"><i class="fa fa-youtube-play"></i> 后台用户管理</a></li>
-                <li class="active"><a href="{{URL('admin/role')}}"><i class="fa fa-youtube-play"></i> 角色管理</a></li>
-                <li class="active"><a href="{{URL('admin/auth')}}"><i class="fa fa-youtube-play"></i> 节点管理</a></li>
+                <li class="active treeview">
+                <a href="#"> <i class="fa fa-youtube-play"></i> <span> 用户权限管理</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                <li class="active"><a href="{{URL('admin/role')}}"><i class="fa fa-circle-o"></i> 角色管理</a></li>
+                <li class="active"><a href="{{URL('admin/auth')}}"><i class="fa fa-circle-o"></i> 节点管理</a></li>
+                 </ul>
+                </li>
               </ul>
             </li>
             

@@ -42,11 +42,15 @@ class AdminUserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:16',
-            //'email' => 'required|email',
-            'phone' => 'required|max:11|min:8',
-            'password' => 'required|max:20|min:6',
-        ]);
+            'name' => 'required|between:2,18',
+            'phone' => 'required|between:11,11',
+            'password' => 'required|between:6,18',
+        ],['name.required'=>'姓名不能为空',
+            'name.between'=>'姓名必须为2到18位',
+            'phone.required'=>'手机号不能为空',
+            'phone.between'=>'手机号必须为11位',
+            'password.required'=>'密码不能为空',
+            'password.between'=>'密码必须为6到18位',]);
         //判断重复密码
         if($request->input("password")!=$request->input("repassword")){
             return back()->with("err","密码和重复密码不一致!");
@@ -59,9 +63,9 @@ class AdminUserController extends Controller
         //dd($data['addtime']);
         $id = AdminUser::insertGetId($data);
         if($id>0){
-            $info = " 信息添加成功！";
+            $info = " 用户添加成功！";
         }else{
-            $info = "信息添加失败！";
+            $info = "用户添加失败！";
         }
         return redirect("admin/adminuser")->with('err', $info);
         //$request->session()->forget('err');
@@ -111,9 +115,9 @@ class AdminUserController extends Controller
         $data['updated_at'] = date("Y-m-d H:i:s",time());
         $id = AdminUser::where('id',$id)->update($data);
         if($id>0){
-            $info = " 信息修改成功！";
+            $info = " 修改成功！";
         }else{
-            $info = "信息修改失败！";
+            $info = " 修改失败！";
         }
         
         return redirect("admin/adminuser")->with('err', $info);
