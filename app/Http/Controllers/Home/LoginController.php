@@ -79,7 +79,7 @@ class LoginController extends Controller
         }else{
             $info = " 注册失败！";
         }
-        $user = Registered::where("email",$data['email'])->first();
+        $user = Users::where("email",$data['email'])->first();
         //dd($user);
         session()->set("user",$user);
         return redirect("/")->with('errors', $info);

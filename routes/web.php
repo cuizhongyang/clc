@@ -48,9 +48,6 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 
 	Route::get('/',"Admin\IndexController@index");
 
-	//后台用户管理
-	Route::resource('adminuser','Admin\AdminUserController');
-
 	//购物车管理
 	Route::get('shopcat','Admin\ShopCatController@index');
 	//浏览订单
@@ -78,12 +75,14 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 	//轮播图管理
 	Route::resource('banner','Admin\BannerController');
 	//轮播图修改
-	Route::post('doedit/{id}',"Admin\BannerController@doedit");
+	Route::post('doit/{id}',"Admin\BannerController@doit");
 	//网站基础配置
 	Route::resource('webconfig','Admin\WebConfigController');
 	Route::post('doedit/{id}',"Admin\WebConfigController@doedit");
 	// 友情链接管理
 	Route::resource('link','Admin\LinkController');
+	//活动管理
+	Route::resource('active','Admin\ActiveController');
 	//后台首页
 	Route::resource('adminuser','Admin\AdminUserController');//用户管理
 	Route::resource('users', 'Admin\UsersController');//会员管理
@@ -96,6 +95,9 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
     Route::get('role/loadAuth/{rid}',"Admin\RoleController@loadAuth");//节点
     //保存节点设置
     Route::post('role/saveAuth',"Admin\RoleController@saveAuth");
+
+    //获取所有的商品
+    Route::get('active/loadAuth/{id}',"Admin\ActiveController@loadAuth");
 
 	//后台商品类别管理
 	Route::resource('category','Admin\CategoryController'); 

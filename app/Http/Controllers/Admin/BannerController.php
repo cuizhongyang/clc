@@ -80,7 +80,7 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function doedit(Request $request, $id)
+    public function doit(Request $request, $id)
     {
         $data= $request->only("title","picname","status");
         $id = Banner::where("id",$id)->update($data);

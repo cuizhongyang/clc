@@ -68,7 +68,6 @@ class AdminUserController extends Controller
             $info = "用户添加失败！";
         }
         return redirect("admin/adminuser")->with('err', $info);
-        //$request->session()->forget('err');
     }
 
     /**
