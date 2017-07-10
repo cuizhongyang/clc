@@ -26,7 +26,7 @@
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 @foreach($vo as $k)
-                <form action="{{url('admin/doedit')}}/{{ $k['id'] }}" method="post" enctype="multipart/form-data" id="art_form" class="form-horizontal">
+                <form action="{{url('admin/doit')}}/{{ $k['id'] }}" method="post" enctype="multipart/form-data" id="art_form" class="form-horizontal">
            
                   {{csrf_field()}}
 
@@ -44,7 +44,7 @@
                         
                         <input type="text" value="{{ $k['picname'] }}" name="picname" id="art_thumb"  value="" >
                         <input type="file" name="file_upload" id="file_upload" value="">
-                       <p><img src="{{asset($k['picname'])}}" alt="" id="img1" style="width:100px"></p>
+                       <p><img src="{{url($k['picname'])}}" alt="" id="img1" style="width:100px"></p>
 
 
                         <script>

@@ -139,9 +139,9 @@
               </a>
               <ul class="treeview-menu">
                 <li class="active"><a href="{{URL('admin/webconfig')}}"><i class="fa fa-youtube-play"></i> 基础设置</a></li>
-                <li class="active"><a href="{{URL('admin/banner')}}"><i class="fa fa-youtube-play"></i> 轮播图管理</a></li>
-                
+                <li class="active"><a href="{{URL('admin/banner')}}"><i class="fa fa-youtube-play"></i> 轮播图管理</a></li>                
                 <li class="active"><a href="{{URL('admin/link')}}"><i class="fa fa-youtube-play"></i> 友情链接管理</a></li>
+                <li class="active"><a href="{{URL('admin/active')}}"><i class="fa fa-youtube-play"></i> 活动管理</a></li>
               </ul>
             </li>
 
