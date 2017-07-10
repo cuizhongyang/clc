@@ -93,16 +93,38 @@
             </li>
             
             <li class="active treeview">
-              <a href="#">
-                <i class="fa fa-bomb"></i> <span> 订单管理</span> <i class="fa fa-angle-left pull-right"></i>
+            <a href="#">
+                <i class="fa fa-gittip"></i> <span> 类别信息管理</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
+			  <li class="active"><a href="{{url('admin/category')}}"><i class="fa fa-circle-o"></i> 浏览类别</a></li>
+                <li class="active"><a href="{{url('admin/category/create')}}"><i class="fa fa-circle-o"></i> 添加类别</a></li>
+              </ul>
+	         </li>
+           <li class="active treeview">
+              <a href="#">
+                <i class="fa fa-gittip"></i> <span> 商品信息管理</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li class="active"><a href="{{url('admin/goods')}}"><i class="fa fa-circle-o"></i> 浏览商品</a></li>
+                <li><a href="{{url('admin/goods/create')}}"><i class="fa fa-circle-o"></i> 添加商品</a></li>
+              </ul>
+            </li>
+            <li class="active treeview">
+              <a href="#">
+                <i class="fa fa-gittip"></i> <span> 商品详情管理</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li class="active"><a href="{{url('admin/gooddetail')}}"><i class="fa fa-circle-o"></i> 浏览详情</a></li>
+                <li><a href="{{url('admin/gooddetail/create')}}"><i class="fa fa-circle-o"></i> 添加详情商品</a></li>
+              </ul>
+            </li>
                 <!-- 订单总览 -->
-                <li class="active"><a href="{{url('admin/orders')}}"><i class="fa fa-circle-o"></i> 用户订单总览</a></li>
+                <li class="active"><a href="{{url('admin/orders')}}"><i class="fa fa-circle-o"></i> 订单管理</a></li>
                 <!-- 订单详情开始 -->
                 <li class="active treeview">
                   <a href="#">
-                     <i class="fa fa-bomb"></i> <span> 订单详情</span> <i class="fa fa-angle-left pull-right"></i>
+                     <i class="fa fa-gittip"></i> <span> 订单详情</span> <i class="fa fa-angle-left pull-right"></i>
                   </a>
                   <ul class="treeview-menu">
                      <li class="active"><a href="{{url('admin/orderdetail/index1')}}"><i class="fa fa-circle-o"></i>未付款订单 </a></li>
@@ -115,7 +137,7 @@
                 <!-- 退货详情 -->
                 <li class="active treeview">
                   <a href="#">
-                     <i class="fa fa-bomb"></i> <span> 退货详情</span> <i class="fa fa-angle-left pull-right"></i>
+                     <i class="fa fa-gittip"></i> <span> 退货详情</span> <i class="fa fa-angle-left pull-right"></i>
                   </a>
                   <ul class="treeview-menu">
                      <li class="active"><a href="{{url('admin/goodsreturn/index1')}}"><i class="fa fa-circle-o"></i>待审核 </a></li>
@@ -125,11 +147,10 @@
                   </ul>
                 </li> 
                 <!-- 退货详情结束 -->
-              </ul>
 	          </li> 
 	          <li class="active treeview">
               <a href="{{ url("admin/shopcat") }}">
-                <i class="fa fa-gittip"></i><span>购物车管理</span>
+                <i class="fa fa-gittip"></i> <span> 购物车管理</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
 	          </li>
             <!-- 网站配置 -->
@@ -144,7 +165,6 @@
                 <li class="active"><a href="{{URL('admin/active')}}"><i class="fa fa-youtube-play"></i> 活动管理</a></li>
               </ul>
             </li>
-
           </ul>
         </section>
         <!-- /.sidebar -->
