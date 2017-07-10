@@ -6,22 +6,23 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Model\Category;
 
+
 class CategoryController extends Controller
 {
     //加载商品类别
-	public function index()
+	public function index(Request $request)
 	{
-		$list=Category::get();
-		//dd($list);
-		// $db=\DB::table('category');
-		// $list=$db->get();
-		//处理信息
-        foreach($list as &$v){
-            $m = substr_count($v->path,","); //获取path中的逗号
+        $list=Category::get()->toArray();
+        $a = $this->get_attr($list,0);
+        $clist = niubi($a);
+
+       foreach($clist as &$v){
+            $m = substr_count($v['path'],","); //获取path中的逗号
             //生成缩进
-            $v->name = str_repeat("&nbsp;",($m-1)*8)."|--".$v->name;
+            $v['name'] = str_repeat("&nbsp;",($m-1)*8).'|--'.$v['name'];
         }
-		return view('admin.category.index',['list'=>$list]);
+       //dd($clist);
+		return view('admin.category.index',['clist'=>$clist]);
 	}
 
 	//加载类别添加
@@ -38,6 +39,7 @@ class CategoryController extends Controller
         $data['name'] = $request->input("name");
         $data['pid'] = $request->input("pid");
         //dd($data);
+        //路径判断添加
         if($data['pid']==0){
             $data['path']="0,";
         }else{
@@ -56,8 +58,57 @@ class CategoryController extends Controller
         return redirect("admin/category")->with("err",$info);
 	}
 
-	public function destroy($id)
-	{
-		return 233;
-	}
+    //加载修改视图
+    public function edit($id)
+    {
+        $list=Category::where('id',$id)->get();
+        return view("admin.category.edit",['list'=>$list]);
+    }
+
+    public function update(Request $request,$id)
+    {
+       $data['name'] = $request->input('name');
+       $re = Category::where('id',$id)->update($data);
+       if($re){
+            $info = "修改成功！";
+       }else{
+            $info = "修改失败！";
+       }
+       return redirect("admin/category")->with('err',$info);
+    }
+    //加载添加子类页面
+    public function addChild($pid,$name,$path)
+    {
+        $na = ltrim($name);
+        return view("admin/category/create",['pid'=>$pid,'path'=>$path,'na'=>$na]);
+        
+    }
+
+    //无限分类树
+    public function get_attr($a,$pid){  
+        $tree = array();   
+        foreach($a as $v){  
+            if($v['pid'] == $pid){                    
+                $v['children'] = $this->get_attr($a,$v['id']);  
+                if($v['children'] == null){  
+                    unset($v['children']);              
+                }  
+                $tree[] = $v;                           
+            }  
+        }  
+            return $tree;                                 
+    }
+
+    public function destroy($id)
+    {
+        //判断是否有子类
+        $a=Category::where('pid',$id)->count();
+        if($a>0){
+            return back()->with('err',"禁止删除");
+        }
+        //执行删除
+        Category::where('id',$id)->delete();
+        return redirect('admin/category')->with('err',"删除成功!");
+    } 
+
 }
