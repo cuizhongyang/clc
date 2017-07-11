@@ -21,35 +21,28 @@
 		<div class="login-boxtitle">
 			<a href="home.html"><img alt="logo" src="{{asset('style/images/logobig.png')}}" /></a>
 		</div>
-
-		<div class="login-banner">
+<div class="login-banner">
 			<div class="login-main">
 				<div class="login-banner-bg"><span></span><img src="{{asset('style/images/big.jpg')}}" /></div>
 				<div class="login-box">
 
-                    <h3 class="title">登录商城</h3>
+                    <h3 class="title">重置密码</h3>
 
                     <div class="clear"></div>
 						
                     <div class="login-form">
-                        <form action="{{url('home/dologin')}}" method="post">
+                        <form action="{{url('/forget')}}" method="post">
                         {{csrf_field()}}
                            <div class="user-name">
                                 <label for="user"><i class="am-icon-user"></i></label>
-                                <input type="text" name="email" id="email" placeholder="邮箱">
+                                <input type="text" name="email" id="email" placeholder="请输入注册邮箱">
                             </div>
-                            <div class="user-pass">
-                                <label for="password"><i class="am-icon-lock"></i></label>
-                                <input type="password" name="password" id="password" placeholder="请输入密码">
-                            </div>
-                            </div> 
-                            <div class="login-links">
-                            <a href="{{url('/forget')}}" class="am-fr">忘记密码</a>
                            
-                            </div>
+                            </div> 
+                            
                             <br/>
                             <div class="am-cf">
-                                <input type="submit" name="" value="登 录" class="am-btn am-btn-primary am-btn-sm">
+                                <input type="submit" value="下一步" class="am-btn am-btn-primary am-btn-sm">
                             </div>
                         </form>
                         <br/>
@@ -68,12 +61,7 @@
                             @endif
                         <br/>
                     <div class="partner">		
-                            <h3>合作账号</h3>
-                        <div class="am-btn-group">
-                            <li><a href="#"><i class="am-icon-qq am-icon-sm"></i><span>QQ登录</span></a></li>
-                            <li><a href="#"><i class="am-icon-weibo am-icon-sm"></i><span>微博登录</span> </a></li>
-                            <li><a href="#"><i class="am-icon-weixin am-icon-sm"></i><span>微信登录</span> </a></li>
-                        </div>
+                        
                     </div>	
 				</div>
 			</div>
@@ -102,4 +90,4 @@
             </div>
 	</body>
 
-</html>
+</html>n

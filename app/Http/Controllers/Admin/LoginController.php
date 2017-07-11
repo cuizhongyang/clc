@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Gregwar\Captcha\CaptchaBuilder;
 use App\Http\Model\Users;
 use App\Http\Model\Adminuser;
+use App\Http\Model\Auth;
+use App\Http\Model\Role;
 use Hash;
 
 class LoginController extends Controller
@@ -27,15 +29,14 @@ class LoginController extends Controller
         }
         
         //执行登陆判断
-        $email = $request->input("name");
+        $name = $request->input("name");
         $password = $request->input("password");
         //获取对应用户信息
-        $user = Adminuser::where("name",$email)->first();
+        $user = Adminuser::where("name",$name)->first();
         //dd($user->password);
         if(!empty($user)){
             //判断密码
-            if(Hash::check($password,$user->password)){
-                //dd($user->password);
+            if(Hash::check($password,$user->password)){  
                 //存储session跳转页面
                 session()->set("adminuser",$user);
                 return redirect("admin");
@@ -50,6 +51,9 @@ class LoginController extends Controller
    {
         $builder = new CaptchaBuilder();
         $builder->build(150,32);
+        //$builder->build(4);
+        //$builder->build($width = 100, $height = 40);
+        
         \Session::set('phrase',$builder->getPhrase()); //存储验证码
         return response($builder->output())->header('Content-type','image/jpeg');
    }

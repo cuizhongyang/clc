@@ -55,12 +55,15 @@ class AdminUserController extends Controller
         if($request->input("password")!=$request->input("repassword")){
             return back()->with("err","密码和重复密码不一致!");
         }
-
+       
 
         $data= $request->only("name","phone");
         $data['password'] = Hash::make($request->input('password'));
         $data['addtime'] = date("Y-m-d H:i:s",time());
-        //dd($data['addtime']);
+         //注册唯一性判断
+        if(AdminUser::where('name',$data['name'])->first()){
+            return redirect("admin/adminuser/create")->with('err','用户名已被使用！');
+        }
         $id = AdminUser::insertGetId($data);
         if($id>0){
             $info = " 用户添加成功！";
@@ -90,7 +93,7 @@ class AdminUserController extends Controller
      */
     public function edit($id)
     {
-        //加载添加页面
+        //加载修改页面
         $list = AdminUser::where('id',$id)->get();
        return view("admin.user.edit",['vo'=>$list]);
     }
@@ -144,19 +147,10 @@ class AdminUserController extends Controller
     //为当前用户准备分配角色信息
     public function loadRole($uid=0)
     {
-        //return '123123';die();
-        //dd($uid);
-       
         //获取所有角色信息
-        //$rolelist = \DB::table("role")->get();
         $rolelist = Role::all();
-        //dd($rolelist);
         //获取当前用户的角色id
-         //\DB::table("user_role")->
-        $rids =User_role::where('uid','=',$uid)->pluck("rid")->toArray();
-        //dd($rids);
-        
-        //$rids = array('0' => 4 , '1' => 5 );
+        $rids =User_role::where('admin_user_id','=',$uid)->pluck("role_id")->toArray();
         //加载模板
         return view("admin.user.rolelist",["uid"=>$uid,"rolelist"=>$rolelist,"rids"=>$rids]);
     }
@@ -164,14 +158,14 @@ class AdminUserController extends Controller
     public function saveRole(Request $request){
         $uid = $request->input("uid");
         //清除数据
-        User_role::where("uid",$uid)->delete();
+        User_role::where("admin_user_id",$uid)->delete();
         
         $rids = $request->input("rids");
         if(!empty($rids)){
             //处理添加数据
             $data = [];
             foreach($rids as $v){
-                $data[] = ["uid"=>$uid,"rid"=>$v];
+                $data[] = ["admin_user_id"=>$uid,"role_id"=>$v];
             }
             //添加数据
             User_role::insert($data);

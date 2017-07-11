@@ -27,15 +27,28 @@ Route::get('/home/center/address',"Home\CenterController@address");
 Route::post('/home/center/update/{id}',"Home\CenterController@update");
 //上传头像
 Route::post('/home/center/upload',"Home\CenterController@upload");
+//收货地址
+Route::post('/home/center/address',"Home\CenterController@address");
 //执行退出
 Route::get('/home/loginout',"Home\LoginController@loginout");
 
 //前台注册
 Route::get('/home/register',"Home\LoginController@register");
 Route::post('/home/doregister',"Home\LoginController@doregister");
+//激活邮箱
+Route::get('/active',"Home\LoginController@active");
+//找回密码
+Route::get('/forget','Home\LoginController@forget');
+//发送密码找回邮件
+Route::post('/forget','Home\LoginController@doforget');
+//重置密码界面
+Route::get('/reset','Home\LoginController@reset');
+//密码重置逻辑路由
+Route::post('/reset','Home\LoginController@doreset');
 
 
 Route::get('/admin/login',"Admin\LoginController@login"); //加载后台登录界面
+Route::get('error',"Admin\IndexController@error"); //加载错误权限信息
 Route::post('/admin/dologin',"Admin\LoginController@doLogin"); //执行后台登录
 Route::get('/admin/logout',"Admin\LoginController@logout"); //执行退出
 Route::get('/admin/getcode',"Admin\LoginController@getCode"); //加载验证码
@@ -46,10 +59,8 @@ Route::post('/admin/upload','Admin\BannerController@upload');//图片上传
 //网站后台路由
 Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 
-	Route::get('/',"Admin\IndexController@index");
+	Route::get('',"Admin\IndexController@index");
 
-	//后台用户管理
-	Route::resource('adminuser','Admin\AdminUserController');
 
 	//购物车管理
 	Route::get('shopcat','Admin\ShopCatController@index');

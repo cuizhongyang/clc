@@ -55,7 +55,15 @@
                             <td>{{ $vo->name }}</td>
                             <td>{{ $vo->phone }}</td>
                             <td><img style="width:50px;height:50px;" src="/{{ $vo->picname }} "/></td>
-                            <td>{{ ($vo->sex == 1)?"男":"女" }}</td>
+                            <td>
+                                @if($vo->sex == 1)
+                                    男
+                                @elseif($vo->sex == 2)
+                                    保密
+                                @elseif($vo->sex == 0)
+                                    女
+                                @endif
+                            </td>
                             <td>{{ $vo->age }}</td>
                             <td>{{ $vo->email }}</td>
                             <td>{{ $vo->addtime }}</td>

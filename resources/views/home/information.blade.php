@@ -43,7 +43,7 @@
 								<div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
 							</div>
 							<div class="topMessage my-shangcheng">
-								<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+								<div class="menu-hd MyShangcheng"><a href="{{url('home/center')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 							</div>
 							<div class="topMessage mini-cart">
 								<div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
@@ -110,6 +110,7 @@
 							<div style="hight:500px;" class="filePic">
 								<input style="height:100px;" type="file" name="file_upload" id="file_upload" value="" class="inputPic">
 								<img style="height:100px;" id="img1" class="am-circle am-img-thumbnail" src="/{{ session('user')->picname }}" />
+								<!--<img style="height:100px;" id="img1" class="am-circle am-img-thumbnail" src="{{env('QINIU_DOMAIN')}}{{session('user')->picname}}" />-->
 							</div>
                             <script type="text/javascript">
                             $(function () {
@@ -172,15 +173,15 @@
 							</div>
 						</div>
                         <center>
-                            @if (count($errors) > 0)
-                                <div class="alert alert-danger">
-                                    <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li style="color:red;">{{ $error }}</li>
-                                    @endforeach
-                                    </ul>
-                                </div>
-                            @endif
+                                @if (count($errors) > 0)
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li style="color:red;">{{ $error }}</li>
+                                        @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                         </center>
 						<!--个人信息 -->
 						<div class="info-main">
@@ -215,6 +216,9 @@
 										</label>
 										<label class="am-radio-inline">
 											<input type="radio" name="sex" value="0" {{ ((session('user')->sex)==0)?"checked":"" }} data-am-ucheck> 女
+										</label>
+                                        <label class="am-radio-inline">
+											<input type="radio" name="sex" value="2" {{ ((session('user')->sex)==2)?"checked":"" }} data-am-ucheck> 保密
 										</label>
 									</div>
 								</div>
@@ -271,13 +275,12 @@
 			<aside class="menu">
 				<ul>
 					<li class="person">
-						<a href="index.html">个人中心</a>
+						<a href="{{url('home/center')}}">个人中心</a>
 					</li>
 					<li class="person">
-						<a href="#">个人资料</a>
+						<a href="{{url('home/center/information')}}">个人资料</a>
 						<ul>
-							<li class="active"> <a href="information.html">个人信息</a></li>
-							<li> <a href="safety.html">安全设置</a></li>
+							<li class="active"> <a href="{{url('home/center/information')}}">个人信息</a></li>
 							<li> <a href="{{url('home/center/address')}}">收货地址</a></li>
 						</ul>
 					</li>

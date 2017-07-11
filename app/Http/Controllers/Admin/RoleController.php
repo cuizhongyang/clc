@@ -103,19 +103,13 @@ class RoleController extends CommonController
     //为当前角色准备分配节点信息
     public function loadAuth($rid=0)
     {
-        //dd('123123');
+       
         //获取所有节点信息
         $list = Auth::get();
-        //dd($list);
-        //$authlist = \DB::table("auth")->get();
-        // foreach($list as $authlist){
-            
-        // }
-        //dd($authlist);
+        
         //获取当前角色的节点id
-        $aids = Relate::where("rid",$rid)->pluck("aid")->toArray();
-        //$rids =User_role::where('uid','=',$uid)->pluck("rid")->toArray();
-        // dd($aids);
+        $aids = Relate::where("role_id",$rid)->pluck("auth_id")->toArray();
+        
         //加载模板
         return view("admin.role.authlist",["rid"=>$rid,"authlist"=>$list,"aids"=>$aids]);
     }
@@ -123,14 +117,14 @@ class RoleController extends CommonController
     public function saveAuth(Request $request){
         $rid = $request->input("rid");
         //清除数据
-        Relate::where("rid",$rid)->delete();
+        Relate::where("role_id",$rid)->delete();
         
         $aids = $request->input("aids");
         if(!empty($aids)){
             //处理添加数据
             $data = [];
             foreach($aids as $v){
-                $data[] = ["rid"=>$rid,"aid"=>$v];
+                $data[] = ["role_id"=>$rid,"auth_id"=>$v];
             }
             //添加数据
             Relate::insert($data);

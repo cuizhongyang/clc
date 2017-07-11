@@ -61,6 +61,13 @@ return [
             'region' => 'your-region',
             'bucket' => 'your-bucket',
         ],
+        'qiniu' => [
+            'driver'     => 'qiniu',
+            'access_key' => env('QINIU_ACCESS_KEY', 'uQcijXHf5AMOBn0Vicm8plNFXutfMivqmriUxhLY'),
+            'secret_key' => env('QINIU_SECRET_KEY', 'YeAJeISASsBXDGfnhMqw1QL0ixYVttAeMvwe8Tqj'),
+            'bucket'     => env('QINIU_BUCKET', 'clcshop'),
+            'domain'     => env('QINIU_DOMAIN', 'http://osp5qrpzk.bkt.clouddn.com/'), // or host: https://xxxx.clouddn.com
+        ],
 
     ],
 
