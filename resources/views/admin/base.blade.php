@@ -120,7 +120,9 @@
               </ul>
             </li>
                 <!-- 订单总览 -->
-                <li class="active"><a href="{{url('admin/orders')}}"><i class="fa fa-circle-o"></i> 订单管理</a></li>
+                <li class="active treeview">
+                <a href="{{url('admin/orders')}}"><i class="fa fa-circle-o"></i> 订单管理</a>
+                </li>
                 <!-- 订单详情开始 -->
                 <li class="active treeview">
                   <a href="#">

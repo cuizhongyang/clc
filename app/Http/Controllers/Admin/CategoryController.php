@@ -15,7 +15,7 @@ class CategoryController extends Controller
         $list=Category::get()->toArray();
         $a = $this->get_attr($list,0);
         $clist = niubi($a);
-
+        //dd($clist);
        foreach($clist as &$v){
             $m = substr_count($v['path'],","); //获取path中的逗号
             //生成缩进

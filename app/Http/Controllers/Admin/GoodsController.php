@@ -46,33 +46,20 @@ class GoodsController extends Controller
     }
 
 
-    //无限分类树
-    public function get_attr($a,$pid){  
-        $tree = array();   
-        foreach($a as $v){  
-            if($v['pid'] == $pid){                    
-                $v['children'] = $this->get_attr($a,$v['id']);  
-                if($v['children'] == null){  
-                    unset($v['children']);              
-                }  
-                $tree[] = $v;                           
-            }  
-        }  
-            return $tree;                                 
-    }
-
-
     //加载添加页面
     public function create()
     {
-        $lis=Category::get();
-        foreach($lis as $v){
-            //获取path中的逗号
-            $m = substr_count($v->path,","); 
+        $lis=Category::get()->toArray();
+        $b = $this->get_attr($lis,0);
+        $clist = niubi($b);
+        //dd($clist);
+        foreach($clist as &$v){
+            $m = substr_count($v['path'],","); //获取path中的逗号
             //生成缩进
-            $v->name = str_repeat("&nbsp;",($m-1)*8).'|--'.$v->name;
+            $v['name'] = str_repeat("&nbsp;",($m-1)*8).'|--'.$v['name'];
         }
-        return view('admin.goods.create',['lis'=>$lis]);
+        //dd($clist);
+        return view('admin.goods.create',['lis'=>$clist]);
     }
 
 
@@ -146,5 +133,22 @@ class GoodsController extends Controller
     {
         $re=Goods::where('id',$id)->delete();
         return redirect('admin/goods')->with('err','删除成功');
+    }
+
+
+
+    //无限分类树
+    public function get_attr($a,$pid){  
+        $tree = array();   
+        foreach($a as $v){  
+            if($v['pid'] == $pid){                    
+                $v['children'] = $this->get_attr($a,$v['id']);  
+                if($v['children'] == null){  
+                    unset($v['children']);              
+                }  
+                $tree[] = $v;                           
+            }  
+        }  
+            return $tree;                                 
     }
 }
