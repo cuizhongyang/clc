@@ -13,6 +13,7 @@
 //前台首页
 Route::get('/',"Home\IndexController@index");
 
+
 //前台登录
 Route::get('/home/login',"Home\LoginController@login");
 //执行登录

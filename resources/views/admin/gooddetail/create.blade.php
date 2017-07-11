@@ -129,12 +129,6 @@
                         <input type="radio"  name="status" value="2" />缺货
                       </div>
                     </div>
-                    <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-2 control-label">活动：</label>
-                      <div class="col-sm-4">
-                        <input type="text" class="form-control" id="inputPassword3" placeholder="活动" name="join">
-                      </div>
-                    </div>
                   </div><!-- /.box-body -->
                   <div class="box-footer">
     				    <div class="col-sm-offset-2 col-sm-1">

@@ -33,7 +33,7 @@
                       <div class="col-sm-4">
                         <select name="cid" class="form-control">
                           @foreach($lis as $v)
-                              <option value="{{ $v->id }}">{{$v->name}}</option>
+                              <option value="{{ $v['id'] }}">{{$v['name']}}</option>
                           @endforeach
                         </select>
                       </div>

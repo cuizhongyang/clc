@@ -761,7 +761,7 @@
 					<!--今日推荐 -->
 
 					<div class="am-g am-g-fixed recommendation">
-						<div class="clock am-u-sm-3" ">
+						<div class="clock am-u-sm-3">
 							<img src="{{asset('style/images/2016.png') }} "></img>
 							<p>今日<br>推荐</p>
 						</div>

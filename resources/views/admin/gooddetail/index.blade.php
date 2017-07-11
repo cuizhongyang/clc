@@ -67,7 +67,6 @@
                           @endif
                       </td>
                       <td>{{$v->addtime}}</td>
-                      <td>{{$v->jion}}</td>
                       <td><button onclick="doDel({{$v->id}})" class="btn btn-xs btn-danger">删除</button> 
                       <button onclick="window.location='{{url('admin/gooddetail')}}/{{$v->id}}/edit'" class="btn btn-xs btn-primary">编辑</button> </td>
                     </tr>
