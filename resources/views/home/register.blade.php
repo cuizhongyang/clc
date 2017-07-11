@@ -53,12 +53,17 @@
                                 
                                     <span style="color:red;" id="passmsg"></span><br/>
                                     @if (count($errors) > 0)
-                                        <div class="mark">
+                                        <div class="alert alert-danger">
                                             <ul>
                                             @foreach ($errors->all() as $error)
                                                 <li style="color:red;">{{ $error }}</li>
                                             @endforeach
                                             </ul>
+                                        </div>
+                                    @endif
+                                    @if (session('err'))
+                                        <div class="alert alert-success">
+                                            <p style="color:red;">{{ session('err') }}</p>
                                         </div>
                                     @endif
                             </form>
@@ -77,6 +82,7 @@
                                 }
                             });
                         });
+                        
                         </script>
 						</div>
 					</div>

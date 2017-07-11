@@ -9,4 +9,14 @@ class Role extends Model{
 protected $table= 'role';  
 //指定主键  
 protected $primaryKey= 'id';  
+
+public function auth()
+    {
+        return $this->belongsToMany('App\Http\Model\Auth');
+    }
+public function adminuser()
+    {
+        return $this->belongsToMany('App\Http\Model\AdminUser');
+    }
+    
 } 

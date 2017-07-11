@@ -41,7 +41,7 @@
       
       <header class="main-header">
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="#" class="logo">
           <!-- 对于侧边栏迷你50x50像素迷你标志 -->
           <span class="logo-mini"><b>A</b>LT</span>
           <!-- 正常状态和移动设备标识 -->

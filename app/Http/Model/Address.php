@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Address extends Model
 {
     //与模型关联的adminuser表
-    protected $adminuser = 'address';
+    protected $table = 'address';
     public $timestamps = false;
 
 }

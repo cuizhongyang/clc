@@ -12,4 +12,8 @@ class IndexController extends Controller
     {
     	return view("admin.index");
     }
+    public function error()
+    {
+        return view("home.404");
+    }
 }

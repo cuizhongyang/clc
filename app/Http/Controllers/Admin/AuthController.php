@@ -20,14 +20,6 @@ class AuthController extends CommonController
         }else{
             $list = Auth::paginate(6);
         }
-        // $where = [];
-        // if($request->has("keyword")){
-            // $kw = $request->input("keyword");
-            // $db->where("name","like","%{$kw}%");
-            // $where['keyword'] = $kw;
-        // }
-       
-        //$list = $db->paginate(5); //获取所有信息
         return view("admin.auth.index",["list"=>$list,"where"=>$where]);
     }
     
@@ -54,9 +46,7 @@ class AuthController extends CommonController
        
         //获取指定的部分数据
         $data = $request->only("name","method","url");
-        //dd($data);
-        //$data['created_at'] = time();
-        //$data['updated_at'] = time();
+        
         $id = Auth::insertGetId($data);
         
         if($id>0){

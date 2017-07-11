@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Model\Users;
+use App\Http\Model\Address;
 
 class CenterController extends Controller
 {
@@ -16,6 +17,7 @@ class CenterController extends Controller
     }
     public function information()
     {
+       
         return view("home.information");
     }
     public function update(Request $request, $id)
@@ -64,12 +66,20 @@ class CenterController extends Controller
             $entension = $file->getClientOriginalExtension();//上传文件的后缀名
             $newName = date('YmdHis').mt_rand(1000,9999).'.'.$entension;
             $path = $file->move(public_path().'/uploads',$newName);
+            
+            // $disk = \Storage::disk('qiniu');
+            // $disk->writeStream('uploads/'.$newName, fopen($file->getRealPath(), 'r'));
+            
             $filepath = 'uploads/'.$newName;
             return  $filepath;
         }
     }
     public function address()
     {
-         return view("home.address");
+        $id = session('user')->id;
+        $name = session('user')->name;
+        $address = Address::where('uid',$id)->get();
+        //dd($address);
+        return view("home.address",['address'=>$address,$name]);
     }
 }

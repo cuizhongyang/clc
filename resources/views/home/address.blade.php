@@ -7,14 +7,16 @@
 
 		<title>地址管理</title>
 
-		<link href="../css/admin.css" rel="stylesheet" type="text/css">
-		<link href="../css/amazeui.css" rel="stylesheet" type="text/css">
+		<link href="{{asset('style/css/admin.css')}}" rel="stylesheet" type="text/css">
+		<link href="{{asset('style/css/amazeui.css')}}" rel="stylesheet" type="text/css">
 
-		<link href="../css/personal.css" rel="stylesheet" type="text/css">
-		<link href="../css/addstyle.css" rel="stylesheet" type="text/css">
-		<script src="../js/jquery.min.js" type="text/javascript"></script>
-		<script src="../js/amazeui.js"></script>
-
+		<link href="{{asset('style/css/personal.css')}}" rel="stylesheet" type="text/css">
+		<link href="{{asset('style/css/addstyle.css')}}" rel="stylesheet" type="text/css">
+		<script src="{{asset('style/js/jquery.min.js')}}" type="text/javascript"></script>
+		<script src="{{asset('style/js/amazeui.js')}}"></script>
+        
+        <link rel="icon" href="{{asset('style/images/favicon.ico') }}" type="image/x-icon">
+        <link rel="shortcut icon" href="{{asset('style/images/favicon.ico') }}" type="image/x-icon">
 	</head>
 
 	<body>
@@ -27,8 +29,12 @@
 						<ul class="message-l">
 							<div class="topMessage">
 								<div class="menu-hd">
-									<a href="#" target="_top" class="h">亲，请登录</a>
-									<a href="#" target="_top">免费注册</a>
+									@if(session("user"))
+                                        <p>{{ session('user')->email }}，你好！<a href="{{url('home/loginout')}}" target="_top" class="h">退出</a></p>
+                                    @else
+                                        <a href="{{url('home/login')}}" target="_top" class="h">亲，请登录</a>
+                                        <a href="{{url('home/register')}}" target="_top">免费注册</a>
+                                    @endif
 								</div>
 							</div>
 						</ul>
@@ -37,7 +43,7 @@
 								<div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
 							</div>
 							<div class="topMessage my-shangcheng">
-								<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+								<div class="menu-hd MyShangcheng"><a href="{{url('home/center')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 							</div>
 							<div class="topMessage mini-cart">
 								<div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
@@ -51,7 +57,7 @@
 
 						<div class="nav white">
 							<div class="logoBig">
-								<li><img src="../images/logobig.png" /></li>
+								<li><img src="{{asset('style/images/logobig.png')}}" /></li>
 							</div>
 
 							<div class="search-bar pr">
@@ -98,21 +104,18 @@
 							<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">地址管理</strong> / <small>Address&nbsp;list</small></div>
 						</div>
 						<hr/>
-						<ul class="am-avg-sm-1 am-avg-md-3 am-thumbnails">
-
+                        <ul class="am-avg-sm-1 am-avg-md-3 am-thumbnails">
+                        @foreach($address as $vo) 
 							<li class="user-addresslist defaultAddr">
 								<span class="new-option-r"><i class="am-icon-check-circle"></i>默认地址</span>
 								<p class="new-tit new-p-re">
-									<span class="new-txt">小叮当</span>
-									<span class="new-txt-rd2">159****1622</span>
+									<span class="new-txt">{{$vo->name}}</span>
+									<span class="new-txt-rd2">{{$vo->phone}}</span>
 								</p>
 								<div class="new-mu_l2a new-p-re">
 									<p class="new-mu_l2cw">
 										<span class="title">地址：</span>
-										<span class="province">湖北</span>省
-										<span class="city">武汉</span>市
-										<span class="dist">洪山</span>区
-										<span class="street">雄楚大道666号(中南财经政法大学)</span></p>
+										<span>{{$vo->address}}</span></p>
 								</div>
 								<div class="new-addr-btn">
 									<a href="#"><i class="am-icon-edit"></i>编辑</a>
@@ -120,48 +123,8 @@
 									<a href="javascript:void(0);" onclick="delClick(this);"><i class="am-icon-trash"></i>删除</a>
 								</div>
 							</li>
-
-							<li class="user-addresslist">
-								<span class="new-option-r"><i class="am-icon-check-circle"></i>设为默认</span>
-								<p class="new-tit new-p-re">
-									<span class="new-txt">小叮当</span>
-									<span class="new-txt-rd2">159****1622</span>
-								</p>
-								<div class="new-mu_l2a new-p-re">
-									<p class="new-mu_l2cw">
-										<span class="title">地址：</span>
-										<span class="province">湖北</span>省
-										<span class="city">武汉</span>市
-										<span class="dist">洪山</span>区
-										<span class="street">雄楚大道666号(中南财经政法大学)</span></p>
-								</div>
-								<div class="new-addr-btn">
-									<a href="#"><i class="am-icon-edit"></i>编辑</a>
-									<span class="new-addr-bar">|</span>
-									<a href="javascript:void(0);" onclick="delClick(this);"><i class="am-icon-trash"></i>删除</a>
-								</div>
-							</li>
-							<li class="user-addresslist">
-								<span class="new-option-r"><i class="am-icon-check-circle"></i>设为默认</span>
-								<p class="new-tit new-p-re">
-									<span class="new-txt">小叮当</span>
-									<span class="new-txt-rd2">159****1622</span>
-								</p>
-								<div class="new-mu_l2a new-p-re">
-									<p class="new-mu_l2cw">
-										<span class="title">地址：</span>
-										<span class="province">湖北</span>省
-										<span class="city">武汉</span>市
-										<span class="dist">洪山</span>区
-										<span class="street">雄楚大道666号(中南财经政法大学)</span></p>
-								</div>
-								<div class="new-addr-btn">
-									<a href="#"><i class="am-icon-edit"></i>编辑</a>
-									<span class="new-addr-bar">|</span>
-									<a href="javascript:void(0);" onclick="delClick(this);"><i class="am-icon-trash"></i>删除</a>
-								</div>
-							</li>
-						</ul>
+                        @endforeach
+                        </ul>
 						<div class="clear"></div>
 						<a class="new-abtn-type" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0}">添加新地址</a>
 						<!--例子-->
@@ -268,7 +231,7 @@
 							<a href="#">合作伙伴</a>
 							<a href="#">联系我们</a>
 							<a href="#">网站地图</a>
-							<em>© 2015-2025 Hengwang.com 版权所有. 更多模板 <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></em>
+							<em>© 2015-2025 Hengwang.com 版权所有. 更多模板 <a href="http://www.css')}}moban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.css')}}moban.com/" title="网页模板" target="_blank">网页模板</a></em>
 						</p>
 					</div>
 				</div>
@@ -277,14 +240,13 @@
 			<aside class="menu">
 				<ul>
 					<li class="person">
-						<a href="index.html">个人中心</a>
+						<a href="{{url('home/center')}}">个人中心</a>
 					</li>
 					<li class="person">
-						<a href="#">个人资料</a>
+						<a href="{{url('home/center/information')}}">个人资料</a>
 						<ul>
-							<li> <a href="information.html">个人信息</a></li>
-							<li> <a href="safety.html">安全设置</a></li>
-							<li class="active"> <a href="address.html">收货地址</a></li>
+							<li> <a href="{{url('home/center/information')}}">个人信息</a></li>
+							<li class="active"> <a href="{{url('home/center/address')}}">收货地址</a></li>
 						</ul>
 					</li>
 					<li class="person">
