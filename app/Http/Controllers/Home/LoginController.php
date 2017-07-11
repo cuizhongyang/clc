@@ -68,23 +68,25 @@ class LoginController extends Controller
         if($request->input("password")!=$request->input("repassword")){
             return back()->with("errors","密码和重复密码不一致!");
         }
-        //dd('123123');
 
 
         $data= $request->only("email");
         //注册唯一性判断
-        if(Users::where('email',$data['email'])->first()){
-            return back()->with('errors','该邮箱已被注册！');
+        $em = Users::where('email',$data['email'])->first();
+        if(!empty($em)){
+            return back()->with('errors',"该邮箱已被注册，请登录！");
         }
         $data['password'] = Hash::make($request->input('password'));
         $data['token'] = Hash::make($request->input('password'));
         $data['addtime'] = date("Y-m-d H:i:s",time());
         $id = Registered::insertGetId($data);
+        
         if($id>0){
             Users::insertGetId($data);
             $user = Users::where("email",$data['email'])->first();
+            
             \Mail::send('email.active', ['user' => $user], function ($m) use ($user) {
-                $m->to($user->email, $user->email)->subject('激活clc商城账号!');
+                $m->to($user->email, $user->name)->subject('激活clc商城账号!');
             });
             $info = " 注册成功！";
         }else{
@@ -131,8 +133,9 @@ class LoginController extends Controller
             \Mail::send('email.forget', ['user' => $user], function ($m) use ($user) {
                 $m->to($user->email, $user->name)->subject('找回密码!');
             });
+            return redirect('home/login')->with('errors','请登录邮箱重置密码！');
         }else{
-            echo "无效邮箱";
+            return redirect('home/register/forget')->with('errors','无效邮箱！');
         }
 
     }
@@ -161,21 +164,19 @@ class LoginController extends Controller
         if($request->input("password")!=$request->input("repassword")){
             return back()->with("errors","密码和重复密码不一致!");
         }
-        
-        
         $input = $request->except('_token','repassword');
         $user = Users::find($input['id']);
-        
-        
-        Hash::check($password,$input->password)
-        
-        
-        $user_pass = \Crypt::encrypt($input['password']);
-        $re =  $user->update(['password'=>$user_pass]);
+        $user_pass = Hash::make($input['password']);
+        if(Hash::check($user_pass,$user->password)){
+            return redirect('/reset')->with('errors','新密码不能和原密码相同！');
+        }
+        $data = $user->toArray();
+        $data['password'] = $user_pass;
+        $re =  $user->where('id',$data['id'])->update($data);
         if($re){
-            return redirect('/home/login');
+            return redirect('/home/login')->with('errors','密码重置成功！');
         }else{
-            echo "修改失败";
+            return redirect('forget')->with('errors','密码重置失败！');
         }
     }
     
