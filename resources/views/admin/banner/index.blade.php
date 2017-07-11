@@ -49,7 +49,7 @@
                         <tr>
                             <td>{{ $vo->id }}</td>
                             <td>{{ $vo->title }}</td>
-                            <td><img width="80px" src="{{url($vo->picname)}}"></td>
+                            <td><img width="80px" src="{{env('QINIU_DOMAIN')}}{{$vo->picname}}"></td>
                             <td>
                              @if($vo->status==1)
                                 启用

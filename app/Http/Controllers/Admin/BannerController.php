@@ -116,7 +116,9 @@ class BannerController extends Controller
         if($file->isValid()){
             $entension = $file->getClientOriginalExtension();//上传文件的后缀名
             $newName = date('YmdHis').mt_rand(1000,9999).'.'.$entension;
-            $path = $file->move(public_path().'/uploads',$newName);
+            $disk = \Storage::disk('qiniu');
+            $disk->writeStream('uploads/'.$newName, fopen($file->getRealPath(), 'r'));
+            // $path = $file->move(public_path().'/uploads',$newName);
             $filepath = 'uploads/'.$newName;
             return  $filepath;
         }

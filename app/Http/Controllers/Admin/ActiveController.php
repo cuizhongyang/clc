@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Model\Active;
+use App\http\Model\Goods;
+use App\http\Model\Active_goods;
 
 class ActiveController extends Controller
 {
@@ -83,7 +85,7 @@ class ActiveController extends Controller
     {
         //dd('123123');
         //获取所有节点信息
-        $list = Auth::get();
+        $list = Goods::get();
         //dd($list);
         //$authlist = \DB::table("auth")->get();
         // foreach($list as $authlist){
@@ -91,11 +93,31 @@ class ActiveController extends Controller
         // }
         //dd($authlist);
         //获取当前角色的节点id
-        $aids = Relate::where("rid",$rid)->pluck("aid")->toArray();
+        $aids = Active_goods::where("active_id",$id)->pluck("good_id")->toArray();
         //$rids =User_role::where('uid','=',$uid)->pluck("rid")->toArray();
-        // dd($aids);
+        //dd($aids);
         //加载模板
-        return view("admin.role.authlist",["rid"=>$rid,"authlist"=>$list,"aids"=>$aids]);
+        return view("admin.active.authlist",["rid"=>$id,"authlist"=>$list,"aids"=>$aids]);
+    }
+
+    public function saveAuth(Request $request){
+        $rid = $request->input("active_id");
+        //dd($rid);
+        //清除数据
+        Active_goods::where("active_id",$rid)->delete();
+        
+        $aids = $request->input("aids");
+        //dd($aids);
+        if(!empty($aids)){
+            //处理添加数据
+            $data = [];
+            foreach($aids as $v){
+                $data[] = ["active_id"=>$rid,"good_id"=>$v];
+            }
+            //添加数据
+            Active_goods::insert($data);
+        }
+        return "参与商品添加成功!";
     }
    
 }

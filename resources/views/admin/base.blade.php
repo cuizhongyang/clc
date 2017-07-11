@@ -150,7 +150,7 @@
 	          </li> 
 	          <li class="active treeview">
               <a href="{{ url("admin/shopcat") }}">
-                <i class="fa fa-gittip"></i> <span> 购物车管理</span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-gittip"></i> <span> 购物车管理</span>
               </a>
 	          </li>
             <!-- 网站配置 -->

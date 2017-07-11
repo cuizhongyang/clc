@@ -130,7 +130,7 @@
         //保存节点信息
         function saveAuth(){
             $.ajax({
-                url:"{{URL('admin/role/saveAuth')}}",
+                url:"{{URL('admin/active/saveAuth')}}",
                 type:"post",
                 dataType:"html",
                 data:$("#authlistform").serialize() ,

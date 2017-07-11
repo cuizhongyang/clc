@@ -99,6 +99,8 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 
     //获取所有的商品
     Route::get('active/loadAuth/{id}',"Admin\ActiveController@loadAuth");
+    //保存到商品
+    Route::post('active/saveAuth',"Admin\ActiveController@saveAuth");
 
 	//后台商品类别管理
 	Route::resource('category','Admin\CategoryController'); 

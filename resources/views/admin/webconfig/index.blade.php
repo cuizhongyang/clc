@@ -43,7 +43,7 @@
                             <td>{{ $vo->id }}</td>
                             <td>{{ $vo->name }}</td>
                             <td>{{ $vo->phone }}</td>
-                            <td><img width="80px" src="{{url($vo->logo)}}"></td>
+                            <td><img width="80px" src="{{env('QINIU_DOMAIN')}}{{$vo->logo}}"></td>
                             <td>{{ $vo->recode_number }}</td>
                             <td>{{ $vo->address }}</td>
                             <td>{{ $vo->copyright }}</td>
