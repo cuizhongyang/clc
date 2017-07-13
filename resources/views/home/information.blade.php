@@ -109,7 +109,7 @@
 
 							<div style="hight:500px;" class="filePic">
 								<input style="height:100px;" type="file" name="file_upload" id="file_upload" value="" class="inputPic">
-								<img style="height:100px;" id="img1" class="am-circle am-img-thumbnail" src="/{{ session('user')->picname }}" />
+         <img style="height:100px;" id="img1" class="am-circle am-img-thumbnail" src="/{{ session('user')->picname }}" />
 								<!--<img style="height:100px;" id="img1" class="am-circle am-img-thumbnail" src="{{env('QINIU_DOMAIN')}}{{session('user')->picname}}" />-->
 							</div>
                             <script type="text/javascript">
@@ -281,7 +281,7 @@
 						<a href="{{url('home/center/information')}}">个人资料</a>
 						<ul>
 							<li class="active"> <a href="{{url('home/center/information')}}">个人信息</a></li>
-							<li> <a href="{{url('home/center/address')}}">收货地址</a></li>
+							<li> <a href="{{url('home/address')}}">收货地址</a></li>
 						</ul>
 					</li>
 					<li class="person">

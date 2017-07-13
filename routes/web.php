@@ -22,14 +22,22 @@ Route::post('/home/dologin',"Home\LoginController@dologin");
 Route::get('/home/center',"Home\CenterController@index");
 //个人资料
 Route::get('/home/center/information',"Home\CenterController@information");
-//收货地址
-Route::get('/home/center/address',"Home\CenterController@address");
 //修改资料
 Route::post('/home/center/update/{id}',"Home\CenterController@update");
 //上传头像
 Route::post('/home/center/upload',"Home\CenterController@upload");
-//收货地址
-Route::post('/home/center/address',"Home\CenterController@address");
+
+//加载地址
+Route::get('/home/address',"Home\AddressController@index");
+//删除地址
+Route::get('/home/address/{id}',"Home\AddressController@del");
+//编辑地址
+Route::get('/home/address/{id}/edit',"Home\AddressController@edit");
+//执行修改地址
+Route::post('/home/address/update/{id}',"Home\AddressController@doedit");
+//添加地址
+Route::post('/home/address/create',"Home\AddressController@create");
+
 //执行退出
 Route::get('/home/loginout',"Home\LoginController@loginout");
 
