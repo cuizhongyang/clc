@@ -30,7 +30,9 @@ class CenterController extends Controller
             'nickname.between'=>'昵称必须为2到18位',
             'phone.between'=>'手机号必须为11位',]);
         $data= $request->only("name","age","sex","nickname","phone");
-        $data['picname']= $request->get("art_thumb");
+        if($request->get("art_thumb")){
+            $data['picname'] = $request->get("art_thumb");
+        }
         if(!$data['name']){
             $data['name'] = null;
         }
@@ -43,9 +45,7 @@ class CenterController extends Controller
         if(!$data['phone']){
             $data['phone'] = null;
         }
-        if(!$data['picname']){
-            $data['picname'] = 'style/images/getAvatar.do.jpg';
-        }
+        
         $res = Users::where('id',$id)->update($data);
         $user = Users::where("id",$id)->first();
         session()->forget('user');
@@ -67,8 +67,8 @@ class CenterController extends Controller
             $newName = date('YmdHis').mt_rand(1000,9999).'.'.$entension;
             $path = $file->move(public_path().'/uploads',$newName);
             
-            // $disk = \Storage::disk('qiniu');
-            // $disk->writeStream('uploads/'.$newName, fopen($file->getRealPath(), 'r'));
+             //$disk = \Storage::disk('qiniu');
+             //$disk->writeStream('uploads/'.$newName, fopen($file->getRealPath(), 'r'));
             
             $filepath = 'uploads/'.$newName;
             return  $filepath;

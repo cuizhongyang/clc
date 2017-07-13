@@ -47,6 +47,7 @@
                                     <label for="passwordRepeat"><i class="am-icon-lock"></i></label>
                                     <input type="password" name="repassword" id="repassword" placeholder="确认密码">
                                 </div>	
+                                
                                 <div class="am-cf">
                                     <input type="submit" name="submit" value="注册" id="sub" class="am-btn am-btn-primary am-btn-sm am-fl">
                                 </div>
@@ -71,7 +72,8 @@
                                         </div>
                                     @endif
                             </form>
-                        </div>
+                            
+                            </div>
                         <hr>
                         <script>
                             $(function(){
