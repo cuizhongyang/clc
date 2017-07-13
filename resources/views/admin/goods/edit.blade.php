@@ -83,7 +83,7 @@
                                     contentType: false,
                                     processData: false,
                                     success: function(data) {
-                                        $('#img1').attr('src','/'+data);
+                                        $('#img1').attr('src',"/"+data);
                                         $('#img1').show();
                                         $('#art_thumb').val(data);
 

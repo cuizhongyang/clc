@@ -20,9 +20,8 @@
             <h3 class="box-title"></i> 修改分类</h3>
           </div><!-- /.box-header -->
         @foreach($list as $v)
-        <form action="{{url('admin/category')}}/{{ $v->id }}" method="get" class="form-horizontal">
+        <form action="{{url('admin/category/update')}}/{{ $v->id }}" method="post" class="form-horizontal">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <input type="hidden" name="_method" value="put">
             <div class="box-body">
               <div class="form-group">
                 <label for="inputPassword3" class="col-sm-3 control-label">类别名称：</label>

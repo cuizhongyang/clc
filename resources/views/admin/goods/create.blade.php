@@ -83,7 +83,7 @@
                                     contentType: false,
                                     processData: false,
                                     success: function(data) {
-                                        $('#img1').attr('src','/'+data);
+                                        $('#img1').attr('src',"/"+data);
                                         $('#img1').show();
                                         $('#art_thumb').val(data);
 
@@ -97,7 +97,7 @@
                          </div>
                         </div>
 
-					          <div class="form-group">
+		            <div class="form-group">
                       <label for="inputPassword3" class="col-sm-2 control-label">单价：</label>
                       <div class="col-sm-4">
                         <input type="text" class="form-control" id="inputPassword3" placeholder="单价" name="price">

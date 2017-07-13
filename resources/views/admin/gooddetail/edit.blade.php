@@ -31,9 +31,13 @@
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">类别：</label>
                       <div class="col-sm-4">
-                        <select name="gid" class="form-control">
-                          <option value="{{$v->gid}}">{{$title}}</option>
-                        </select>
+                        <input type="text" class="form-control" value="{{$v->gid}}" readonly id="inputPassword3" placeholder="商品id" name="gid">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-2 control-label">商品名称：</label>
+                      <div class="col-sm-4">
+                        <input type="text" class="form-control" value="{{$v->name}}" id="inputPassword3" placeholder="商品名称" name="name">
                       </div>
                     </div>
                     <div class="form-group">
@@ -102,6 +106,12 @@
                       </div>
                     </div>
                     <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-2 control-label">显卡：</label>
+                      <div class="col-sm-4">
+                        <input type="text" class="form-control" id="inputPassword3" value="{{ $v->vcard }}" placeholder="显卡" name="vcard">
+                      </div>
+                    </div>
+                    <div class="form-group">
                       <label for="inputPassword3" class="col-sm-2 control-label">内存：</label>
                       <div class="col-sm-4">
                         <input type="text" class="form-control" id="inputPassword3" value="{{ $v->ram }}" placeholder="内存" name="ram">
@@ -116,7 +126,7 @@
                     <div class="form-group">
                       <label for="inputPassword3" class="col-sm-2 control-label">单价：</label>
                       <div class="col-sm-4">
-                        <input type="text" class="form-control" id="inputPassword3" value="{{ $v->price }}" placeholder="单价" name="price">
+                        <input type="text" class="form-control" id="inputPassword3" value="{{ $v->price }}" readonly placeholder="单价" name="price">
                       </div>
                     </div>
                     <div class="form-group">

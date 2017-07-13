@@ -11,14 +11,19 @@ use Illuminate\Support\Facades\Input;
 class GooddetailController extends Controller
 {
     //加载浏览
-    public function index()
+    public function index(Request $request)
     {
-        $list=Gooddetail::get();
-        foreach($list as &$v){
-            $name = Goods::where('id',$v->gid)->value('title');
-            $v->gid = $name;
+        $where=array();
+        //模糊搜索，分页
+        if($request->has("name")){
+            $name=$request->input('name');
+            $list=Gooddetail::where('name',"like","%{$name}%")->paginate(5);
+            $where['name']=$name;
+        }else{
+        
+        $list=Gooddetail::paginate(5);
         }
-        return view('admin.gooddetail.index',['list'=>$list]);
+        return view('admin.gooddetail.index',['list'=>$list,'name'=>$where]);
     }
 
     /**
@@ -27,13 +32,9 @@ class GooddetailController extends Controller
      * @return \Illuminate\Http\Response
      */
     //加载添加页面
-    public function create()
+    public function add($id)
     {
-        $lis=Goods::get();
-        //遍历商品名称
-        foreach($lis as &$v){
-            $v->name = $v->name;
-        }
+        $lis=Goods::where("id",$id)->get();
         return view('admin.gooddetail.create',['lis'=>$lis]);
     }
 
@@ -50,8 +51,8 @@ class GooddetailController extends Controller
         //获取要添加的数据
         $a=$request->except('_token','file_upload');
         $a['addtime'] = date("Y-m-d H:i:s",time());
-		$a['join'] = 1;
         $id=Gooddetail::insert($a);
+
         return redirect('admin/gooddetail')->with('err','添加成功');
     }
 

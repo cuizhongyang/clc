@@ -116,7 +116,7 @@
               </a>
               <ul class="treeview-menu">
                 <li class="active"><a href="{{url('admin/gooddetail')}}"><i class="fa fa-circle-o"></i> 浏览详情</a></li>
-                <li><a href="{{url('admin/gooddetail/create')}}"><i class="fa fa-circle-o"></i> 添加详情商品</a></li>
+                
               </ul>
             </li>
                 <!-- 订单总览 -->

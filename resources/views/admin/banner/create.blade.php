@@ -37,13 +37,9 @@
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">图片</label>
                       <div class="col-sm-4">
-                        <!-- <input type="file" name="picname" class="form-control" id="inputEmail3" placeholder="密码"> -->
-                        
                         <input type="text" name="picname" id="art_thumb"  value="" >
                         <input type="file" name="file_upload" id="file_upload" value="">
                        <p><img src="" alt="" id="img1" style="width:100px" hidden></p>
-
-
                         <script>
                             $(function () {
                                 $("#file_upload").change(function () {
