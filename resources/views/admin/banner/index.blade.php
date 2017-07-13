@@ -21,17 +21,7 @@
               <div class="box">
                 <div class="box-header with-border">
                   <h3 class="box-title"><i class="fa fa-th"></i> 轮播图管理</h3>
-                  <!--搜索-->
-                  <div class="box-tools">
-                    <form action="{{url('admin/users')}}" method="get">
-                    <div class="input-group" style="width: 150px;">
-                      <input type="text" name="name" class="form-control input-sm pull-right" placeholder="姓名"/>
-                      <div class="input-group-btn">
-                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                      </div>
-                    </div>
-                    </form>
-                  </div>
+                  
                     <button class="btn btn-sm btn-primary" onclick="window.location='{{URL('admin/banner/create')}}'">添加图片</button>
                   
                 </div><!-- /.box-header -->
@@ -49,7 +39,7 @@
                         <tr>
                             <td>{{ $vo->id }}</td>
                             <td>{{ $vo->title }}</td>
-                            <td><img width="80px" src="{{env('QINIU_DOMAIN')}}{{$vo->picname}}"></td>
+                            <td><img width="80px" src="{{url($vo->picname)}}"></td>
                             <td>
                              @if($vo->status==1)
                                 启用
