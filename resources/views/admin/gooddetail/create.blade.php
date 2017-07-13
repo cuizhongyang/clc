@@ -29,13 +29,18 @@
                   {{ csrf_field() }}
                   <div class="box-body">
                     <div class="form-group">
-                      <label for="inputEmail3" class="col-sm-2 control-label">商品名：</label>
+                      <label for="inputEmail3" class="col-sm-2 control-label">商品id：</label>
                       <div class="col-sm-4">
-                        <select name="gid" class="form-control">
-                          @foreach($lis as $v)
-                              <option value="{{$v->id}}">{{$v->title}}</option>
-                          @endforeach
-                        </select>
+                      @foreach($lis as $v)
+                      <input type="text" class="form-control" value="{{$v->id}}" readonly id="inputPassword3" placeholder="商品id" name="gid">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-2 control-label">商品名称：</label>
+                      <div class="col-sm-4">
+                      
+                       <input type="text" name="name" class="form-control" value="{{$v->title}}" id="inputPassword3" placeholder="商品名称" >
+                        
                       </div>
                     </div>
                     <div class="form-group">
@@ -43,7 +48,7 @@
                       <div class="col-sm-4">
                       <input type="text" hidden name="picname" id="art_thumb"  value="" >
                         <input type="file" name="file_upload" id="file_upload" value="">
-                       <p><img src="" alt="" id="img1" style="width:100px" hidden></p>
+                       <p><img src="" alt="" id="img1" style="width:100px;height:100px;" hidden></p>
                         <script>
                             $(function () {
                                 $("#file_upload").change(function () {
@@ -104,6 +109,12 @@
                       </div>
                     </div>
                     <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-2 control-label">显卡：</label>
+                      <div class="col-sm-4">
+                        <input type="text" class="form-control" id="inputPassword3" placeholder="显卡" name="vcard">
+                      </div>
+                    </div>
+                    <div class="form-group">
                       <label for="inputPassword3" class="col-sm-2 control-label">内存：</label>
                       <div class="col-sm-4">
                         <input type="text" class="form-control" id="inputPassword3" placeholder="内存" name="ram">
@@ -116,9 +127,9 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-2 control-label">单价：</label>
+                      <label for="inputPassword3"  class="col-sm-2 control-label">单价：</label>
                       <div class="col-sm-4">
-                        <input type="text" class="form-control" id="inputPassword3" placeholder="单价" name="price">
+                        <input type="text" value="{{$v->price}}" readonly class="form-control" id="inputPassword3" placeholder="单价" name="price">
                       </div>
                     </div>
                     <div class="form-group">
@@ -129,6 +140,7 @@
                         <input type="radio"  name="status" value="2" />缺货
                       </div>
                     </div>
+                    @endforeach
                   </div><!-- /.box-body -->
                   <div class="box-footer">
     				    <div class="col-sm-offset-2 col-sm-1">

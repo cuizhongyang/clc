@@ -18,6 +18,8 @@ class GoodsController extends Controller
             if($file->isValid()){
                 $entension = $file->getClientOriginalExtension();//上传文件的后缀名
                 $newName = date('YmdHis').mt_rand(1000,9999).'.'.$entension;//新文件名
+             // $disk = \Storage::disk('qiniu');
+            	// $disk->writeStream('uploads/'.$newName, fopen($file->getRealPath(), 'r'));
                 $path = $file->move(public_path().'/uploads',$newName);//上传路径
                 $filepath = 'uploads/'.$newName;
                 return  $filepath;

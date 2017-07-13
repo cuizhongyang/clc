@@ -39,10 +39,10 @@
                       <th>商品名称</th>
                       <th>商品图片</th>
                       <th>单价</th>
-                      
                       <th>状态</th>
                       <th>发布时间</th>
-                      <th style="width:100px">操作</th>
+                      <th>点击量</th>
+                      <th style="width:200px">操作</th>
                     </tr>
                     @foreach($list as $v)
                     <tr>
@@ -51,7 +51,6 @@
                       <td>{{$v->title}}</td>
                       <td><img style="width:50px;height:50px;" src="{{asset($v->picname)}}"></td>
                       <td>{{$v->price}}</td>
-                      
                       <td>
                           @if($v->status == 0)
                               新上货
@@ -62,8 +61,11 @@
                           @endif
                       </td>
                       <td>{{$v->addtime}}</td>
+                      <td>{{$v->click}}</td>
                       <td><button onclick="doDel({{$v->id}})" class="btn btn-xs btn-danger">删除</button> 
-                      <button onclick="window.location='{{url('admin/goods')}}/{{$v->id}}/edit'" class="btn btn-xs btn-primary">编辑</button> </td>
+                      <button onclick="window.location='{{url('admin/goods')}}/{{$v->id}}/edit'" class="btn btn-xs btn-primary">编辑</button>
+                      <button class="btn btn-xs btn-success" onclick="window.location='{{url('admin/gooddetail/add')}}/{{$v->id}}'">添加详情</button>
+                      </td>
                     </tr>
                     @endforeach  
                   </table>

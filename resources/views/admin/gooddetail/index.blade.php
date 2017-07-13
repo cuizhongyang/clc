@@ -27,7 +27,7 @@
                 <form action="{{url('admin/gooddetail')}}" method="get" class="form-inline">
                   <div class="form-group">
                       <label for="exampleInputName2"></label>
-                      <input type="text" name="title" class="form-control" id="exampleInputName2" placeholder="商品名称">
+                      <input type="text" name="name" class="form-control" id="exampleInputName2" placeholder="商品名称">
                   </div>
                   <button type="submit" class="btn btn-default">搜索</button>
               </form>
@@ -36,24 +36,28 @@
                     <tr>
                       <th style="width:60px">ID</th>
                       <th>商品id</th>
+                      <th>商品名称</th>
                       <th>商品图片</th>
                       <th>处理器</th>
                       <th>显示器尺寸</th>
+                      <th>显卡</th>
                       <th>内存</th>
                       <th>硬盘容量</th>
                       <th>价格</th>
                       <th>状态</th>
                       <th>添加时间</th>
-                      <th>活动</th>
+                     
                       <th style="width:100px">操作</th>
                     </tr>
                     @foreach($list as $v)
                     <tr>
                       <td>{{$v->id}}</td>
                       <td>{{$v->gid}}</td>
+                      <td>{{$v->name}}</td>
                       <td><img style="width:50px;height:50px;" src="{{asset($v->picname)}}"></td>
                       <td>{{$v->cpu}}</td>
                       <td>{{$v->size}}</td>
+                      <td>{{$v->vcard}}</td>
                       <td>{{$v->ram}}</td>
                       <td>{{$v->card}}</td>
                       <td>{{$v->price}}</td>
@@ -73,7 +77,9 @@
                     @endforeach  
                   </table>
                 </div><!-- /.box-body -->
-                
+                <div class="box-footer clearfix">
+                  {!! $list->appends($name)->render() !!}
+                </div>
               </div><!-- /.box -->   
             </div><!-- /.col -->
           </div><!-- /.row -->

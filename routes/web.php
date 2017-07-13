@@ -118,9 +118,11 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 
 	//后台商品类别管理
 	Route::resource('category','Admin\CategoryController'); 
+	Route::post('category/update/{id}','Admin\CategoryController@update'); 
 	//后台商品信息管理
 	Route::resource('goods','Admin\GoodsController'); 
 	Route::post('edgoods/{id}','Admin\GoodsController@edgoods');
+	Route::get('gooddetail/add/{id}','Admin\GooddetailController@add');
 	//添加子类
 	Route::get('addchild/{pid}/{name}/{path}','Admin\CategoryController@addChild');
 	//商品详情信息

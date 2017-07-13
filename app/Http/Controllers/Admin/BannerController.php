@@ -111,14 +111,17 @@ class BannerController extends Controller
     //执行图片上传处理
     public function upload(Request $request)
     {
-     
+       
         $file = $request->file('file_upload');
+        
         if($file->isValid()){
+           
             $entension = $file->getClientOriginalExtension();//上传文件的后缀名
             $newName = date('YmdHis').mt_rand(1000,9999).'.'.$entension;
-            $disk = \Storage::disk('qiniu');
-            $disk->writeStream('uploads/'.$newName, fopen($file->getRealPath(), 'r'));
-            // $path = $file->move(public_path().'/uploads',$newName);
+            //$disk = \Storage::disk('qiniu');      
+            $disk->put('uploads/'.$newName, $file);
+            //$disk->writeStream('uploads/'.$newName, fopen($file->getRealPath(), 'r'));
+            $path = $file->move(public_path().'/uploads',$newName);
             $filepath = 'uploads/'.$newName;
             return  $filepath;
         }

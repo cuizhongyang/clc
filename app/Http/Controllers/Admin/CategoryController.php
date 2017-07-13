@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Model\Category;
-
+use Illuminate\Support\Facades\Input;
 
 class CategoryController extends Controller
 {
@@ -58,6 +58,8 @@ class CategoryController extends Controller
         return redirect("admin/category")->with("err",$info);
 	}
 
+
+
     //加载修改视图
     public function edit($id)
     {
@@ -67,8 +69,10 @@ class CategoryController extends Controller
 
     public function update(Request $request,$id)
     {
+       // dd(Input::all());
        $data['name'] = $request->input('name');
        $re = Category::where('id',$id)->update($data);
+       //dd($re);
        if($re){
             $info = "修改成功！";
        }else{
