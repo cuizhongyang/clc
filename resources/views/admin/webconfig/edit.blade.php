@@ -50,7 +50,7 @@
                         
                         <input type="text" value="{{ $k['logo'] }}" name="logo" id="art_thumb"  value="" >
                         <input type="file" name="file_upload" id="file_upload" value="">
-                       <p><img src="{{env('QINIU_DOMAIN')}}/{{ $k['logo'] }}" alt="" id="img1" style="width:100px"></p>
+                        <p><img src="{{ asset($k['logo']) }}" alt="" id="img1" style="width:100px"></p>
 
 
                         <script>
@@ -87,7 +87,7 @@
                                     contentType: false,
                                     processData: false,
                                     success: function(data) {
-                                        $('#img1').attr('src',"{{env('QINIU_DOMAIN')}}"+data);
+                                        $('#img1').attr('src','/'+data);
                                         $('#img1').show();
                                         $('#art_thumb').val(data);
 
