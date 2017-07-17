@@ -116,7 +116,7 @@ class GoodsController extends Controller
         //dd(Input::all());
         $input=$request->except('_token','_method','file_upload');
         $re=Goods::where('id',$id)->update($input);
-        if($re){
+        if($re>0){
             $info= "修改成功!";
         }else{
             $info= "修改失败!";

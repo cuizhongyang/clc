@@ -4,7 +4,6 @@
         <section class="content-header">
           <h1>
             信息输出表
-            <small>preview of simple tables</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>

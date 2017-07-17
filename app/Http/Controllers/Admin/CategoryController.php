@@ -73,7 +73,7 @@ class CategoryController extends Controller
        $data['name'] = $request->input('name');
        $re = Category::where('id',$id)->update($data);
        //dd($re);
-       if($re){
+       if($re>0){
             $info = "修改成功！";
        }else{
             $info = "修改失败！";
