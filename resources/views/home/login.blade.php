@@ -36,17 +36,24 @@
                         {{csrf_field()}}
                            <div class="user-name">
                                 <label for="user"><i class="am-icon-user"></i></label>
-                                <input type="text" name="email" id="email" placeholder="邮箱">
+                                <input type="text" name="email" value="{{ old('name') }}" id="email" placeholder="邮箱">
                             </div>
                             <div class="user-pass">
                                 <label for="password"><i class="am-icon-lock"></i></label>
-                                <input type="password" name="password" id="password" placeholder="请输入密码">
+                                <input type="password" name="password" value="{{ old('password') }}" id="password" placeholder="请输入密码">
                             </div>
-                            </div> 
-                            <div class="login-links">
-                            <a href="{{url('/forget')}}" class="am-fr">忘记密码</a>
-                           
+                            <div class="user-pass" style="width:180px;float:left;" >
+                                <label for="code"><i class="am-icon-code"></i></label>
+                                <input type="text" name="mycode" id="code" placeholder="验证码"/>
                             </div>
+                            <div class="col-xs-6" style="height:42px;">
+                                <img src="{{url('home/getcode')}}" onclick="this.src='{{url('home/getcode')}}?id='+Math.random(); " width="100" height="34"/>
+                            </div>
+                    </div> 
+                        <div class="login-links">
+                        <a href="{{url('/forget')}}" class="am-fr">忘记密码</a>
+                       
+                        </div>
                             <br/>
                             <div class="am-cf">
                                 <input type="submit" name="" value="登 录" class="am-btn am-btn-primary am-btn-sm">

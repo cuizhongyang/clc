@@ -54,7 +54,6 @@
 				<!--悬浮搜索框-->
 
 				<div class="nav white">
-				
 					<div class="logoBig">
 						<li><img style="width:200px;height:90px;" src="{{asset(session('config')['logo']) }}" /></li>
 					</div>
