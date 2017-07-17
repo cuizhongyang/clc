@@ -54,9 +54,8 @@
 				<!--悬浮搜索框-->
 
 				<div class="nav white">
-					<div class="logo"><img src="{{asset('style/images/logo.png') }}" /></div>
 					<div class="logoBig">
-						<li><img src="{{asset('style/images/logobig.png') }}" /></li>
+						<li><img style="width:200px;height:90px;" src="{{asset('style/images/logo12.png') }}" /></li>
 					</div>
 
 					<div class="search-bar pr">

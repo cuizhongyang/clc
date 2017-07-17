@@ -34,11 +34,11 @@
         <form action="{{url('admin/dologin')}}" method="post">
           <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
           <div class="form-group has-feedback">
-            <input type="text" class="form-control" name="name" placeholder="姓名"/>
+            <input type="text" class="form-control" value="{{ old('name') }}" name="name" placeholder="姓名"/>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input type="password" name="password" class="form-control" placeholder="密码"/>
+            <input type="password" name="password" value="{{ old('password') }}" class="form-control" placeholder="密码"/>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="row">

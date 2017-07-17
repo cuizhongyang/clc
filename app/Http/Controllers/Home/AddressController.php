@@ -33,7 +33,7 @@ class AddressController extends Controller
     }
     public function edit($id)
     {
-        // 获取单挑数据
+        // 获取单条数据
         $result = Address::where('id',$id)->get();;
         if(empty($result)) {
             $result = [];

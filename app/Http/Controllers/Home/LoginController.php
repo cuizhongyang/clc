@@ -18,6 +18,12 @@ class LoginController extends Controller
    //执行登录
     public function doLogin(Request $request)
    {
+       //执行验证码判断
+        $mycode = $request->input("mycode");
+        $yanzhengma = $request->session()->get('phrase');
+        if($mycode !== $yanzhengma){
+            return back()->with("errors","验证码错误！".$mycode.":".$yanzhengma);
+        }
         $this->validate($request, [
             'email' => 'required',
             'password' => 'required|between:6,18',
@@ -44,6 +50,17 @@ class LoginController extends Controller
             }
         }
         return back()->with("errors","账号不存在！");
+   }
+   //加载验证码
+   public function getCode()
+   {
+        $builder = new CaptchaBuilder();
+        $builder->build(150,40);
+        //$builder->build(4);
+        //$builder->build($width = 100, $height = 40);
+        
+        \Session::set('phrase',$builder->getPhrase()); //存储验证码
+        return response($builder->output())->header('Content-type','image/jpeg');
    }
    
    //加载注册模板
