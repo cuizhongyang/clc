@@ -12,7 +12,11 @@
 */
 //前台首页
 Route::get('/',"Home\IndexController@index");
-
+//前台列表
+Route::get("/home/list/index1/{id}","Home\ListController@index1");
+Route::get("/home/list/index2/{id}","Home\ListController@index2");
+//前台详情
+Route::get("/home/detail/{id}/{price}","Home\DetailController@index");
 
 //前台登录
 Route::get('/home/login',"Home\LoginController@login");

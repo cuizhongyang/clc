@@ -6,18 +6,18 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<title>首页</title>
-
+		<script type="text/javascript" src="{{asset('style/js/jquery-1.7.min.js')}}"></script>
 		<link href="{{asset('style/css/amazeui.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{asset('style/css/admin.css')}}" rel="stylesheet" type="text/css" />
-
 		<link href="{{asset('style/css/demo.css')}}" rel="stylesheet" type="text/css" />
-
-		<link href="{{asset('style/css/hmstyle.css')}}" rel="stylesheet" type="text/css"/>
-		<link href="{{asset('style/css/skin.css')}}" rel="stylesheet" type="text/css" />
-		<script src="{{asset('style/js/jquery.min.js')}}"></script>
-		<script src="{{asset('style/js/amazeui.min.js')}}"></script>
-        <link rel="icon" href="{{asset('style/images/favicon.ico') }}" type="image/x-icon">
-        <link rel="shortcut icon" href="{{asset('style/images/favicon.ico') }}" type="image/x-icon">
+		<link type="text/css" href="{{asset('style/css/optstyle.css')}}" rel="stylesheet" />
+		<link type="text/css" href="{{asset('style/css/style.css')}}" rel="stylesheet" />
+		<script type="text/javascript" src="{{asset('style/js/quick_links.js')}}"></script>
+		<script type="text/javascript" src="{{asset('style/js/jquery.imagezoom.min.js')}}"></script>
+		<script type="text/javascript" src="{{asset('style/js/jquery.flexslider.js')}}"></script>
+		<script type="text/javascript')}}" src="{{asset('style/js/list.js')}}"></script>
+		<script type="text/javascript')}}" src="{{asset('style/js/amazeui.js')}}"></script>
+		
 	</head>
 
 	<body>
@@ -38,7 +38,7 @@
 				</ul>
 				<ul class="message-r">
 					<div class="topMessage home">
-						<div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
+						<div class="menu-hd"><a href="/" target="_top" class="h">商城首页</a></div>
 					</div>
 					<div class="topMessage my-shangcheng">
 						<div class="menu-hd MyShangcheng"><a href="{{url('home/center')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
@@ -54,9 +54,9 @@
 				<!--悬浮搜索框-->
 
 				<div class="nav white">
-					<div class="logo"><img src="{{asset('style/images/logo.png') }}" /></div>
+				
 					<div class="logoBig">
-						<li><img src="{{asset('style/images/logobig.png') }}" /></li>
+						<li><img style="width:200px;height:90px;" src="{{asset(session('config')['logo']) }}" /></li>
 					</div>
 
 					<div class="search-bar pr">
@@ -77,22 +77,15 @@
 			<div class="footer ">
 						<div class="footer-hd ">
 							<p>
-								<a href="# ">恒望科技</a>
+							@foreach(session('link') as $link)
+								<a href="{{$link['url']}}">{{$link['name']}}</a>
 								<b>|</b>
-								<a href="# ">商城首页</a>
-								<b>|</b>
-								<a href="# ">支付宝</a>
-								<b>|</b>
-								<a href="# ">物流</a>
+							@endforeach
 							</p>
 						</div>
 						<div class="footer-bd ">
 							<p>
-								<a href="# ">关于恒望</a>
-								<a href="# ">合作伙伴</a>
-								<a href="# ">联系我们</a>
-								<a href="# ">网站地图</a>
-								<em>© 2015-2025 Hengwang.com 版权所有*<a href="#" target="_blank" title="">CLC商城</a> - Collect from <a href="#" title="" target="_blank">为你服务</a></em>
+								<em>{{session('config')['recode_number'] }}<a href="#" target="_blank" title="">{{session('config')['name'] }}</a> - Collect from <a href="#" title="" target="_blank">为你服务</a></em>
 							</p>
 						</div>
 					</div>

@@ -93,7 +93,7 @@ class ActiveController extends Controller
         // }
         //dd($authlist);
         //获取当前角色的节点id
-        $aids = Active_goods::where("active_id",$id)->pluck("good_id")->toArray();
+        $aids = Active_goods::where("active_id",$id)->pluck("goods_id")->toArray();
         //$rids =User_role::where('uid','=',$uid)->pluck("rid")->toArray();
         //dd($aids);
         //加载模板
@@ -112,7 +112,7 @@ class ActiveController extends Controller
             //处理添加数据
             $data = [];
             foreach($aids as $v){
-                $data[] = ["active_id"=>$rid,"good_id"=>$v];
+                $data[] = ["active_id"=>$rid,"goods_id"=>$v];
             }
             //添加数据
             Active_goods::insert($data);
