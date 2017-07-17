@@ -14,8 +14,13 @@
 
 		<link href="{{asset('style/css/hmstyle.css')}}" rel="stylesheet" type="text/css"/>
 		<link href="{{asset('style/css/skin.css')}}" rel="stylesheet" type="text/css" />
+
+		<link href="{{asset('style/css/cartstyle.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{asset('style/css/optstyle.css')}}" rel="stylesheet" type="text/css" />
+
 		<script src="{{asset('style/js/jquery.min.js')}}"></script>
 		<script src="{{asset('style/js/amazeui.min.js')}}"></script>
+		<script type="text/javascript" src="{{asset('style/js/jquery.js')}}"></script>
         <link rel="icon" href="{{asset('style/images/favicon.ico') }}" type="image/x-icon">
         <link rel="shortcut icon" href="{{asset('style/images/favicon.ico') }}" type="image/x-icon">
 	</head>
@@ -44,7 +49,7 @@
 						<div class="menu-hd MyShangcheng"><a href="{{url('home/center')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 					</div>
 					<div class="topMessage mini-cart">
-						<div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
+						<div class="menu-hd"><a id="mc-menu-hd" href="{{url('home/shopcat')}}" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
 					</div>
 					<div class="topMessage favorite">
 						<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
@@ -103,7 +108,7 @@
 		<div class="navCir">
 			<li class="active"><a href="home.html"><i class="am-icon-home "></i>首页</a></li>
 			<li><a href="sort.html"><i class="am-icon-list"></i>分类</a></li>
-			<li><a href="shopcart.html"><i class="am-icon-shopping-basket"></i>购物车</a></li>	
+			<li><a href="{{url('home/shopcat/index')}}"><i class="am-icon-shopping-basket"></i>购物车</a></li>	
 			<li><a href="../person/index.html"><i class="am-icon-user"></i>我的</a></li>					
 		</div>
 

@@ -96,7 +96,7 @@ class GooddetailController extends Controller
         $input=$request->except('_token',"file_upload");
 
         $re=Gooddetail::where('id',$id)->update($input);
-        if($re){
+        if($re>0){
             $info= "修改成功!";
         }else{
             $info= "修改失败!";

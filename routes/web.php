@@ -37,6 +37,10 @@ Route::get('/home/address/{id}/edit',"Home\AddressController@edit");
 Route::post('/home/address/update/{id}',"Home\AddressController@doedit");
 //添加地址
 Route::post('/home/address/create',"Home\AddressController@create");
+//加载购物车
+Route::get('/home/shopcat',"Home\ShopcatController@add");
+
+
 
 //执行退出
 Route::get('/home/loginout',"Home\LoginController@loginout");
