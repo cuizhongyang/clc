@@ -48,7 +48,7 @@
 									<li>
 										<div class="i-pic limit">
 											<img src="{{asset($kk['picname'])}}">											
-											<a href="{{url('home/detail')}}/{{$kk['id']}}/{{$kk['price']}}"><p class="title fl">{{$kk['title']}}</p>
+											<a href="{{url('home/detail')}}/{{$kk['id']}}/{{$kk['price']}}"><p class="title fl">{{$kk['title']}}</p></a>
 											<p class="price fl">
 												<b>¥</b>
 												<strong>{{$kk['price']}}</strong>

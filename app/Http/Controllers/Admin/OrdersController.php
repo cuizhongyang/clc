@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Model\Orders;
+use App\Http\Model\OrderDetail;
 
 class OrdersController extends Controller
 {
@@ -21,4 +22,12 @@ class OrdersController extends Controller
     	}
     	return view("admin.orders.index",['list'=>$list,'param'=>$param]);
     }
+	//查看订单详情
+	public function detail($id)
+	{
+		$res = OrderDetail::where('guid',$id)->get()->toArray();
+		//dd($res);
+		return view("admin.orders.info",["res"=>$res]);
+		
+	}
 }

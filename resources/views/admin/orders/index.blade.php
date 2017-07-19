@@ -68,7 +68,7 @@
                             <td>{{ $vo->total_amout }}</td>
                             <td>{{ $vo->addtime }}</td>
                             <td><!--<button class="btn btn-xs btn-danger" onclick="doDel({{ $vo->id }})"></button> -->
-                               <button class="btn btn-xs btn-primary" onclick="window.location='{{URL('/admin/users')}}/{{ $vo->id }}/edit'">查看详情</button>
+                               <button class="btn btn-xs btn-primary" onclick="window.location='{{URL('/admin/order/detail')}}/{{ $vo->id }}'">查看详情</button>
                                </td>
                         </tr>
                     @endforeach

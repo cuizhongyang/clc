@@ -20,20 +20,8 @@
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header with-border">
-                  <h3 class="box-title"><i class="fa fa-th"></i> 订单信息总览</h3>
-                  <!--搜索-->
-                  <div class="box-tools">
-                    <form action="{{url('admin/orderdetail/index1')}}" method="get">
-                    <div class="input-group" style="width: 150px;">
-                      <input type="text" name="gid" class="form-control input-sm pull-right" placeholder="订单编号"/>
-                      <div class="input-group-btn">
-                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                      </div>
-                    </div>
-                    </form>
-                  </div>
-
-                  
+                  <h3 class="box-title"><i class="fa fa-th"></i> 详细订单信息</h3>
+      
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table class="table table-bordered">
@@ -47,28 +35,34 @@
                       <th>单价</th>
                       <th>订单状态</th>
                       <th>退货状态</th>
-                      <th>评论状态</th>
                       <th> 添加时间</th>
           
                     </tr>
                   
-                    @foreach($list as $vo) 
+                    @foreach($res as $vo) 
                         <tr>
-                            <td>{{ $vo->id }}</td>
-                            <td>{{ $vo->guid }}</td>
-                            <td>{{ $vo->uid }}</td>
-                            <td>{{ $vo->gid }}</td>
-                            <td>{{ $vo->name }}</td>
-                            <td>{{ $vo->number }}</td>
-                            <td>{{ $vo->price }}</td>
+                            <td>{{ $vo['id'] }}</td>
+                            <td>{{ $vo['guid'] }}</td>
+                            <td>{{ $vo['uid'] }}</td>
+                            <td>{{ $vo['gid'] }}</td>
+                            <td>{{ $vo['name'] }}</td>
+                            <td>{{ $vo['number'] }}</td>
+                            <td>{{ $vo['price'] }}</td>
                             <td>
-                                @if($vo->order_status == 3)
+                                @if($vo['order_status'] == 3)
                                     未付款
+								@elseif($vo['order_status'] == 4)
+									待发货
+								@elseif($vo['order_status'] == 5)
+									待收货
+								@elseif($vo['order_status'] == 1)
+									待评论
+								@elseif($vo['order_status'] == 0)
+									已评论
                                 @endif
                             </td>
-                            <td>@if($vo->return_status ==1)不退货@endif</td>
-                            <td>@if($vo->order_status ==0) 已评价@elseif($vo->order_status !=0)未评论 @endif</td>
-                            <td>{{ $vo->addtime }}</td>
+                            <td>@if($vo['return_status'] ==1)不退货@endif</td>
+                            <td>{{ $vo['addtime'] }}</td>
                             
                         </tr>
                     @endforeach
@@ -76,7 +70,6 @@
                   </table>
                 </div><!-- /.box-body -->
                 <div class="box-footer clearfix">
-                 {!! $list->appends($param)->render() !!}
                 </div>
               </div><!-- /.box -->
 

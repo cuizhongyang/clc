@@ -61,12 +61,12 @@
                             <td>{{ $vo->number }}</td>
                             <td>{{ $vo->price }}</td>
                             <td>
-                                @if($vo->order_status == 3)
+                                @if($vo->order_status == 5)
                                     待收货
                                 @endif
                             </td>
                             <td>@if($vo->return_status ==1)不退货@endif</td>
-                            <td>@if($vo->c_status ==1) 未评价 @endif</td>
+                            <td>@if($vo->order_status ==0) 已评价@elseif($vo->order_status !=0)未评论 @endif</td>
                             <td>{{ $vo->addtime }}</td>
                             
                     @endforeach

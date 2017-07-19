@@ -150,11 +150,6 @@
                 </li> 
                 <!-- 退货详情结束 -->
 	          </li> 
-	          <li class="active treeview">
-              <a href="{{ url("admin/shopcat") }}">
-                <i class="fa fa-gittip"></i> <span> 购物车管理</span>
-              </a>
-	          </li>
             <!-- 网站配置 -->
             <li class="active treeview">
               <a href="#">

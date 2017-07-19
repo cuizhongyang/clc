@@ -73,8 +73,8 @@
 
 					<div class="search-bar pr">
 						<a name="index_none_header_sysc" href="#"></a>
-						<form>
-							<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
+						<form action="{{url('home/list/index3')}}" method="get">
+							<input id="searchInput" name="key" type="text" placeholder="搜索" autocomplete="off">
 							<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
 						</form>
 					</div>
@@ -97,7 +97,7 @@
 						</div>
 						<div class="footer-bd ">
 							<p>
-								<em>{{session('config')['recode_number'] }}<a href="#" target="_blank" title="">{{session('config')['name'] }}</a> - Collect from <a href="#" title="" target="_blank">为你服务</a></em>
+								<em>{{session('config')['recode_number'] }}<a>{{session('config')['name'] }}</a><a>为你服务</a></em>
 							</p>
 						</div>
 					</div>

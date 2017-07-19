@@ -15,6 +15,7 @@ Route::get('/',"Home\IndexController@index");
 //前台列表
 Route::get("/home/list/index1/{id}","Home\ListController@index1");
 Route::get("/home/list/index2/{id}","Home\ListController@index2");
+Route::get("/home/list/index3","Home\ListController@index3");
 //前台详情
 Route::get("/home/detail/{id}/{price}","Home\DetailController@index");
 //加载验证码
@@ -95,6 +96,8 @@ Route::group(['prefix'=>'admin','middleware'=>'admin'],function(){
 	Route::get('shopcat','Admin\ShopCatController@index');
 	//浏览订单
 	Route::get('orders','Admin\OrdersController@index');
+	//查看订单详情
+    Route::get('order/detail/{id}',"Admin\OrdersController@detail");
 	//未付款订单
 	Route::get('orderdetail/index1','Admin\OrderDetailController@index1');
 	//待发货订单
