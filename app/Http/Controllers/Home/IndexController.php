@@ -18,7 +18,7 @@ class IndexController extends Controller
     public function index()       
     {
 		//轮播图
-		$ba = Banner::get();
+		$ba = Banner::where('status',1)->get();
 		//网站配置
 		$a = WebConfig::get()->toArray()[0];
 		\Session()->set('config',$a);

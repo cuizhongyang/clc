@@ -50,7 +50,7 @@
 					<div class="menu-hd MyShangcheng"><a href="{{url('home/center')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 				</div>
 				<div class="topMessage mini-cart">
-					<div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
+					<div class="menu-hd"><a id="mc-menu-hd" href="{{url('home/shopcat/index')}}" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
 				</div>
 				<div class="topMessage favorite">
 					<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
@@ -61,13 +61,13 @@
 
 			<div class="nav white">
 				<div class="logoBig">
-					<li><img style="width:200px;height:90px;margin-left:-50px;" src="{{asset(session('config')['logo']) }}" /></li>
+					<li><img style="width:200px;height:90px;margin-left:-180px;" src="{{asset(session('config')['logo']) }}" /></li>
 				</div>
 				<div class="search-bar pr">
 					<a name="index_none_header_sysc" href="#"></a>
 					<form>
 						<div>
-						<input style="width:460px;" id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
+						<input style="width:400px;" id="searchInput" name="index_none_header_sysc" type="text" placeholder="" autocomplete="off">
 						<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
 						</div>
 					</form>
@@ -202,7 +202,7 @@
 											<a href="javascript:;" title="关闭" class="close">×</a>
 										</div>
 										<div class="theme-popbod dform">
-											<form class="theme-signin" name="loginform" action="" method="post">
+											<form class="theme-signin" name="loginform" action="{{url('home/shopcat')}}" method="get">
 
 												<div class="theme-signin-left">
 
@@ -227,7 +227,8 @@
 															<input id="min" class="am-btn am-btn-default" type="button" onclick="sub()" value="-"></td>
 															<input id="text_box" name="number" style="width:30px;" type="text" id="txt" value="1"/>
 															<input id="add" class="am-btn am-btn-default" type="button" onclick="add()" value="+">
-
+															<input type="hidden" value="{{$price}}" name="price"/>
+															<input type="hidden" value="{{$list->id}}" name="id"/>
 														</dd>
 
 													</div>
@@ -252,22 +253,9 @@
 													</script>
 													<div class="clear"></div>
 
-													<div class="btn-op">
-														<div class="btn am-btn am-btn-warning">确认</div>
-														<div class="btn close am-btn am-btn-warning">取消</div>
-													</div>
+													
 												</div>
-												<div class="theme-signin-right">
-													<div class="img-info">
-														<img src="../images/songzi.jpg" />
-													</div>
-													<div class="text-info">
-														<span class="J_Price price-now">¥39.00</span>
-														<span id="Stock" class="tb-hidden">库存<span class="stock">1000</span>件</span>
-													</div>
-												</div>
-
-											</form>
+												
 										</div>
 									</div>
 
@@ -298,7 +286,7 @@
 							</li>
 							<li>
 								<div class="clearfix tb-btn tb-btn-basket theme-login">
-									<a id="LikBasket" title="加入购物车" href="{{url('home/shopcat')}}/{{$list->id}}/{{$price}}"><i></i>加入购物车</a>
+									<input type="submit" id="LikBasket" title="加入购物车" value="加入购物车">
 								</div>
 							</li>
 						</div>

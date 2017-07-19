@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Model\Goods;
 use App\Http\Model\Category;
+use App\Http\Model\Gooddetail;
 use Illuminate\Support\Facades\Input;
 
 
@@ -134,6 +135,7 @@ class GoodsController extends Controller
     public function destroy($id)
     {
         $re=Goods::where('id',$id)->delete();
+        Gooddetail::where('gid',$id)->delete();
         return redirect('admin/goods')->with('err','删除成功');
     }
 

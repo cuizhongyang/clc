@@ -11,7 +11,7 @@
 		<link href="{{asset('myadmin/bootstrap/css/bootstrap.css')}}" rel="stylesheet" type="text/css" />   
 		<script type="text/javascript" src="{{asset('style/js/jquery-1.7.min.js')}}"></script>
 		<script type="text/javascript" src="{{asset('style/js/script.js')}}"></script>
-		
+		<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
 		
 
 		<link href="{{asset('style/css/amazeui.css')}}" rel="stylesheet" type="text/css" />
@@ -56,7 +56,7 @@
 						<div class="menu-hd MyShangcheng"><a href="{{url('home/center')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 					</div>
 					<div class="topMessage mini-cart">
-						<div class="menu-hd"><a id="mc-menu-hd" href="{{url('home/shopcat')}}" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
+						<div class="menu-hd"><a id="mc-menu-hd" href="{{url('home/shopcat/index')}}" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
 					</div>
 					<div class="topMessage favorite">
 						<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
@@ -108,7 +108,7 @@
 		<div class="navCir">
 			<li class="active"><a href="home.html"><i class="am-icon-home "></i>首页</a></li>
 			<li><a href="sort.html"><i class="am-icon-list"></i>分类</a></li>
-			<li><a href="{{url('home/shopcat/index')}}"><i class="am-icon-shopping-basket"></i>购物车</a></li>	
+			<li><a href="{{url('home/shopcat')}}"><i class="am-icon-shopping-basket"></i>购物车</a></li>	
 			<li><a href="../person/index.html"><i class="am-icon-user"></i>我的</a></li>					
 		</div>
 

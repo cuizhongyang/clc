@@ -112,9 +112,10 @@ class LoginController extends Controller
         $user = Users::where("email",$data['email'])->first();
         //dd($user);
         session()->set("user",$user);
-        return redirect("/")->with('errors', $info);
         if(($user->status) == 0){
-            return redirect("home/login")->with('errors', '请去邮箱激活！');
+            return redirect("home/login")->with('errors', '注册成功，请去邮箱激活！');
+        }else{
+            return redirect("/")->with('errors', $info);
         }
     }
     
