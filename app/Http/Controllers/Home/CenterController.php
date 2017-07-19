@@ -12,8 +12,11 @@ class CenterController extends Controller
     //加载后台首页
     public function index()
     {
-        
+        if(session('user')){
         return view("home.center");
+        }else{
+            return redirect("home/login")->with('errors', '请先登录！');
+        }
     }
     public function information()
     {
@@ -81,5 +84,9 @@ class CenterController extends Controller
         $address = Address::where('uid',$id)->get();
         //dd($address);
         return view("home.address",['address'=>$address,$name]);
+    }
+    public function qq()
+    {
+        return view("home.qq");
     }
 }

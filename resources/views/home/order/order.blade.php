@@ -18,6 +18,8 @@
 		<script src="{{asset('style/layer/layer.js')}}" type="text/javascript"></script>
 		<script src="{{asset('style/js/jquery.min.js')}}"></script>
 		<script src="{{asset('style/js/amazeui.js')}}"></script>
+        <link rel="icon" href="{{asset('style/images/favicon.ico') }}" type="image/x-icon">
+        <link rel="shortcut icon" href="{{asset('style/images/favicon.ico') }}" type="image/x-icon">
 
 	</head>
 
@@ -31,17 +33,21 @@
 						<ul class="message-l">
 							<div class="topMessage">
 								<div class="menu-hd">
-									<a href="#" target="_top" class="h">亲，请登录</a>
-									<a href="#" target="_top">免费注册</a>
+									@if(session("user"))
+                                        <p>{{ session('user')->email }}，你好！<a href="{{url('home/loginout')}}" target="_top" class="h">退出</a></p>
+                                    @else
+                                        <a href="{{url('home/login')}}" target="_top" class="h">亲，请登录</a>
+                                        <a href="{{url('home/register')}}" target="_top">免费注册</a>
+                                    @endif
 								</div>
 							</div>
 						</ul>
 						<ul class="message-r">
 							<div class="topMessage home">
-								<div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
+								<div class="menu-hd"><a href="{{url('/')}}" target="_top" class="h">商城首页</a></div>
 							</div>
 							<div class="topMessage my-shangcheng">
-								<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+								<div class="menu-hd MyShangcheng"><a href="{{url('home/center')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
 							</div>
 							<div class="topMessage mini-cart">
 								<div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
@@ -55,7 +61,7 @@
 
 						<div class="nav white">
 							<div class="logoBig">
-								<li><img src="{{asset('style/images/logobig.png')}}" /></li>
+								<li><img style="width:200px;height:90px;" src="{{asset(session('config')['logo']) }}" /></li>
 							</div>
 
 							<div class="search-bar pr">
@@ -76,7 +82,7 @@
 					   <div class="long-title"><span class="all-goods">全部分类</span></div>
 					   <div class="nav-cont">
 							<ul>
-								<li class="index"><a href="#">首页</a></li>
+								<li class="index"><a href="{{url('/')}}">首页</a></li>
                                 <li class="qc"><a href="#">闪购</a></li>
                                 <li class="qc"><a href="#">限时抢</a></li>
                                 <li class="qc"><a href="#">团购</a></li>
@@ -104,11 +110,11 @@
 						<div class="am-tabs am-tabs-d2 am-margin" data-am-tabs>
 
 							<ul class="am-avg-sm-5 am-tabs-nav am-nav am-nav-tabs">
-								<li class="am-active"><a href="#tab1">所有订单</a></li>
-								<li><a href="#tab2">待付款</a></li>
-								<li><a href="#tab3">待发货</a></li>
-								<li><a href="#tab4">待收货</a></li>
-								<li><a href="#tab5">待评价</a></li>
+								<li class="am-active"><a href="{{url('/home/order')}}">所有订单</a></li>
+								<li><a href="{{url('/home/order')}}">待付款</a></li>
+								<li><a href="{{url('/home/order')}}">待发货</a></li>
+								<li><a href="{{url('/home/order')}}">待收货</a></li>
+								<li><a href="{{url('/home/order')}}">待评价</a></li>
 							</ul>
 
 							<div class="am-tabs-bd">
@@ -155,7 +161,7 @@
                                                   btn: ['确定','取消'] //按钮
                                                 },function(index){
                                                     layer.close(index);
-                                                    location.href=("{{ url('/home/doPay') }}/"+id);
+                                                    location.href=("{{ url('/home/Pay') }}/"+id);
                                                 },function(){
                                                  
                                                 });
@@ -174,13 +180,16 @@
                                                 });
                                             }
                                             function commit(id){
-                                                layer.open({
-                                                    type: 1,
-                                                    skin: 'layui-layer-rim', //加上边框
-                                                    area: ['420px', '240px'], //宽高
-                                                    content: '<form action="commit/id" method="post"><input type="hidden" name="_token" value="{{ csrf_token() }}"><p>评论：</p><textarea name="commit" cols="55" rows="8"></textarea><button style="width: 100px;height: 30px;font-size: 18px;font-family: 微软雅黑;letter-spacing: 8px;border-radius: 5px;border: 1px solid #2576A8;padding-left: 12px;" type="submit">提交</button></form>'
+                                               layer.confirm('确定要评论吗？', {
+                                                  btn: ['确定','取消'] //按钮
+                                                },function(index){
+                                                    layer.close(index);
+                                                    location.href=("{{ url('/home/commit') }}/"+id);
+                                                },function(){
+                                                 
                                                 });
                                             }
+                                            
                                              
 											</script>
                                             @if (session('err'))
@@ -190,6 +199,83 @@
                                                     </script>
                                                 </div>
                                             @endif
+                                             <!-- 交易成功 -->
+                                            @foreach ($list0 as $v)
+                                            @if (!empty($v))      
+											<div class="order-status5">
+												<div class="order-title">
+                                                
+													<!--    <em>店铺：小桔灯</em>-->
+												</div>
+												<div class="order-content">
+                                                
+													<div class="order-left">
+                                                   
+                                                    @foreach ($v as $vo)
+														<ul class="item-list">
+															<li class="td td-item">
+																<div class="item-pic">
+																	<a href="#" class="J_MakePoint">
+																		<img style="width:100px;height:100px;" src="/{{$vo['picname']}}" class="itempic J_ItemImg">
+																	</a>
+																</div>
+																<div class="item-info">
+																	<div class="item-basic-info">
+																		<a href="#">
+																			<p>{{$vo['name']}}</p>
+																		</a>
+																	</div>
+																</div>
+															</li>
+															<li class="td td-price">
+																<div class="item-price">
+																	<p>{{$vo['price']}}</p>
+																</div>
+															</li>
+															<li class="td td-number">
+																<div class="item-number">
+																	<span>×</span><p>{{$vo['number']}}</p>
+																</div>
+															</li>
+															<li class="td td-operation">
+																<div class="item-operation">
+																	
+																</div>
+															</li>
+                                                            
+														</ul>
+                                                       @endforeach 
+                                                       
+                                                    </div>
+													<div class="order-right">
+														<li class="td td-amount">
+															<div class="item-amount">
+																合计：￥：XXX
+																<p>含运费：<span>10.00</span></p>
+															</div>
+														</li>
+														<div class="move-right">
+															<li class="td td-status">
+																<div class="item-status">
+                                                                    <p class="Mystatus">交易成功</p>
+																	<p class="order-info"><a href="/home/orderinfo">订单详情</a></p>
+																</div>
+															</li>
+															<li class="td td-change">
+																<div class="am-btn am-btn-danger anniu">
+                                                                @foreach($v as $vo)
+                                                                    <a href="javascript:void(0);" onclick="doDel({{$vo['guid']}})">
+                                                                @endforeach
+                                                                删除订单</a>
+                                                                </div>
+															</li>
+														</div>
+													</div>
+                                                     
+												</div>
+											</div>
+                                            @endif
+                                            @endforeach
                                              <!-- 交易成功 -->
                                             @foreach ($list1 as $v)
                                             @if (!empty($v))      
@@ -459,7 +545,7 @@
 															</li>
 															<li class="td td-operation">
 																<div class="item-operation">
-																	 <a href="">退款</a>
+																	 <a href="javascript:void(0);" onclick="layer.msg('请联系客服！');">退款</a>
 																</div>
 															</li>
                                                             
@@ -536,7 +622,7 @@
 															</li>
 															<li class="td td-operation">
 																<div class="item-operation">
-																	 <a href="">退款/退货</a>
+																	 <a href="javascript:void(0);" onclick="layer.msg('请联系客服！');">退款/退货</a>
 																</div>
 															</li>
                                                             
@@ -753,7 +839,7 @@
 															</li>
 															<li class="td td-operation">
 																<div class="item-operation">
-																	 <a href="">退款</a>
+																	 <a href="javascript:void(0);" onclick="layer.msg('请联系客服！');">退款</a>
 																</div>
 															</li>
                                                             
@@ -859,7 +945,7 @@
 															</li>
 															<li class="td td-operation">
 																<div class="item-operation">
-                                                                    <a href="">退款/退货</a>
+                                                                    <a href="javascript:void(0);" onclick="layer.msg('请联系客服！');">退款/退货</a>
 																</div>
 															</li>
                                                             
@@ -992,9 +1078,9 @@
 															</li>
 															<li class="td td-change">
 																<div class="am-btn am-btn-danger anniu">
-                                                                @foreach($v as $vo)
-                                                                    <a href="javascript:void(0);" onclick="commit({{$vo['guid']}})">
-                                                                @endforeach
+                                                             
+                                                                    <a href="javascript:void(0);" onclick="commit({{$vo['gid']}})" >
+                                                                
                                                                 我要评论</a>
                                                                 </div>
 															</li>
@@ -1015,66 +1101,63 @@
 					</div>
 				</div>
 				<!--底部-->
-				<div class="footer">
-					<div class="footer-hd">
-						<p>
-							<a href="#">恒望科技</a>
-							<b>|</b>
-							<a href="#">商城首页</a>
-							<b>|</b>
-							<a href="#">支付宝</a>
-							<b>|</b>
-							<a href="#">物流</a>
-						</p>
-					</div>
-					<div class="footer-bd">
-						<p>
-							<a href="#">关于恒望</a>
-							<a href="#">合作伙伴</a>
-							<a href="#">联系我们</a>
-							<a href="#">网站地图</a>
-							<em>© 2015-2025 Hengwang.com 版权所有. 更多模板 <a href="http://www.css')}}moban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.css')}}moban.com/" title="网页模板" target="_blank">网页模板</a></em>
-						</p>
-					</div>
-
-				</div>
+				<div class="footer ">
+                <div class="footer-hd ">
+                    <p>
+                        <a href="">CLC商城</a>
+                        <b>|</b>
+                        <a href="{{url('/')}}">商城首页</a>
+                        <b>|</b>
+                        <a href="# ">支付宝</a>
+                        <b>|</b>
+                        <a href="# ">物流</a>
+                    </p>
+                </div>
+                <div class="footer-bd ">
+                    <p>
+                        <a href="# ">关于CLC</a>
+                        <a href="# ">合作伙伴</a>
+                        <a href="# ">联系我们</a>
+                        <a href="# ">网站地图</a>
+                        <em>© 2015-2025 Hengwang.com 版权所有*<a href="#" target="_blank" title="">CLC商城</a> - Collect from <a href="#" title="" target="_blank">为你服务</a></em>
+                    </p>
+                </div>
+            </div>
 			</div>
+
 			<aside class="menu">
 				<ul>
-					<li class="person">
-						<a href="index.html">个人中心</a>
+					<li class="person active">
+						<a href="{{url('home/center')}}">个人中心</a>
 					</li>
 					<li class="person">
-						<a href="#">个人资料</a>
+						<a href="{{url('home/center/information')}}">个人资料</a>
 						<ul>
-							<li> <a href="information.html">个人信息</a></li>
-							<li> <a href="safety.html">安全设置</a></li>
-							<li> <a href="address.html">收货地址</a></li>
+							<li> <a href="{{url('home/center/information')}}">个人信息</a></li>
+							<li> <a href="{{url('home/address')}}">收货地址</a></li>
 						</ul>
 					</li>
 					<li class="person">
 						<a href="#">我的交易</a>
 						<ul>
-							<li class="active"><a href="order.html">订单管理</a></li>
-							<li> <a href="change.html">退款售后</a></li>
+							<li><a href="{{url('/home/order')}}">订单管理</a></li>
 						</ul>
 					</li>
 					<li class="person">
-						<a href="#">我的资产</a>
+						<a href="">我的资产</a>
 						<ul>
-							<li> <a href="coupon.html">优惠券 </a></li>
-							<li> <a href="bonus.html">红包</a></li>
-							<li> <a href="bill.html">账单明细</a></li>
+							<li> <a href="">优惠券 </a></li>
+							<li> <a href="">红包</a></li>
+							<li> <a href="">账单明细</a></li>
 						</ul>
 					</li>
 
 					<li class="person">
-						<a href="#">我的小窝</a>
+						<a href="">我的小窝</a>
 						<ul>
-							<li> <a href="collection.html">收藏</a></li>
-							<li> <a href="foot.html">足迹</a></li>
-							<li> <a href="comment.html">评价</a></li>
-							<li> <a href="news.html">消息</a></li>
+							<li> <a href="">收藏</a></li>
+							<li> <a href="">足迹</a></li>
+							<li> <a href="">消息</a></li>
 						</ul>
 					</li>
 

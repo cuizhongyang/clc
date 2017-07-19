@@ -25,6 +25,8 @@ Route::get('/home/login',"Home\LoginController@login");
 Route::post('/home/dologin',"Home\LoginController@dologin");
 //个人中心
 Route::get('/home/center',"Home\CenterController@index");
+//qq客服
+Route::get('/home/qq',"Home\CenterController@qq");
 //订单管理
 Route::get('/home/order',"Home\OrderController@index");
 //订单详情
@@ -32,11 +34,14 @@ Route::get('/home/orderinfo',"Home\OrderController@info");
 //删除订单
 Route::get('/home/doDel/{id}',"Home\OrderController@dodel");
 //订单付款
+Route::get('/home/Pay/{id}',"Home\OrderController@pay");
+//实施付款
 Route::get('/home/doPay/{id}',"Home\OrderController@dopay");
 //确认收货
 Route::get('/home/doGoods/{id}',"Home\OrderController@dogoods");
 //商品评论
-Route::post('/home/commit/{id}',"Home\OrderController@commit");
+Route::get('/home/commit/{id}',"Home\OrderController@commit");
+Route::post('/home/commit/update/{id}',"Home\OrderController@update");
 //个人资料
 Route::get('/home/center/information',"Home\CenterController@information");
 //修改资料
@@ -50,6 +55,8 @@ Route::get('/home/address',"Home\AddressController@index");
 Route::get('/home/address/{id}',"Home\AddressController@del");
 //编辑地址
 Route::get('/home/address/{id}/edit',"Home\AddressController@edit");
+//改变默认地址
+Route::get('/home/address/status/{id}',"Home\AddressController@status");
 //执行修改地址
 Route::post('/home/address/update/{id}',"Home\AddressController@doedit");
 //添加地址
