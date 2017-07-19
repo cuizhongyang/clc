@@ -41,7 +41,7 @@
 						</ul>
 						<ul class="message-r">
 							<div class="topMessage home">
-								<div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
+								<div class="menu-hd"><a href="{{url('/')}}" target="_top" class="h">商城首页</a></div>
 							</div>
 							<div class="topMessage my-shangcheng">
 								<div class="menu-hd MyShangcheng"><a href="{{url('home/center')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
@@ -58,7 +58,7 @@
 
 						<div class="nav white">
 							<div class="logoBig">
-								<li><img src="{{asset('style/images/logobig.png')}}" /></li>
+								<li><img style="width:200px;height:90px;" src="{{asset(session('config')['logo']) }}" /></li>
 							</div>
 
 							<div class="search-bar pr">
@@ -80,7 +80,7 @@
 			<div class="long-title"><span class="all-goods">全部分类</span></div>
 			<div class="nav-cont">
 				<ul>
-					<li class="index"><a href="#">首页</a></li>
+					<li class="index"><a href="{{url('/')}}">首页</a></li>
 					<li class="qc"><a href="#">闪购</a></li>
 					<li class="qc"><a href="#">限时抢</a></li>
 					<li class="qc"><a href="#">团购</a></li>
@@ -112,7 +112,7 @@
                         @else
                             <li class="user-addresslist">
                         @endif
-								<span class="new-option-r default" data-id="{{ $vo->id }}"><i class="am-icon-check-circle"></i>默认地址</span>
+								<span class="new-option-r default"><i class="am-icon-check-circle"></i><a href="javascript:void(0);" onclick="javascript:window.location.href='{{ url('/home/address/status') }}/{{ $vo->id }}'" >默认地址</a></span>
 								<p class="new-tit new-p-re">
 									<span class="new-txt">{{$vo->name}}</span>
 									<span class="new-txt-rd2">{{ substr_replace($vo->phone,'****',3,4) }}</span>
@@ -229,66 +229,67 @@
 
 				</div>
 				<!--底部-->
-				<div class="footer">
-					<div class="footer-hd">
-						<p>
-							<a href="#">恒望科技</a>
-							<b>|</b>
-							<a href="#">商城首页</a>
-							<b>|</b>
-							<a href="#">支付宝</a>
-							<b>|</b>
-							<a href="#">物流</a>
-						</p>
-					</div>
-					<div class="footer-bd">
-						<p>
-							<a href="#">关于恒望</a>
-							<a href="#">合作伙伴</a>
-							<a href="#">联系我们</a>
-							<a href="#">网站地图</a>
-							<em>© 2015-2025 Hengwang.com 版权所有. 更多模板 <a href="http://www.css')}}moban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.css')}}moban.com/" title="网页模板" target="_blank">网页模板</a></em>
-						</p>
-					</div>
-				</div>
+				<div class="footer ">
+                <div class="footer-hd ">
+                    <p>
+                        <a href="">CLC商城</a>
+                        <b>|</b>
+                        <a href="{{url('/')}}">商城首页</a>
+                        <b>|</b>
+                        <a href="# ">支付宝</a>
+                        <b>|</b>
+                        <a href="# ">物流</a>
+                    </p>
+                </div>
+                <div class="footer-bd ">
+                    <p>
+                        <a href="# ">关于CLC</a>
+                        <a href="# ">合作伙伴</a>
+                        <a href="# ">联系我们</a>
+                        <a href="# ">网站地图</a>
+                        <em>© 2015-2025 Hengwang.com 版权所有*<a href="#" target="_blank" title="">CLC商城</a> - Collect from <a href="#" title="" target="_blank">为你服务</a></em>
+                    </p>
+                </div>
+            </div>
 			</div>
 
 			<aside class="menu">
 				<ul>
-					<li class="person">
+					<li class="person active">
 						<a href="{{url('home/center')}}">个人中心</a>
 					</li>
 					<li class="person">
 						<a href="{{url('home/center/information')}}">个人资料</a>
 						<ul>
 							<li> <a href="{{url('home/center/information')}}">个人信息</a></li>
-							<li class="active"> <a href="{{url('home/center/address')}}">收货地址</a></li>
+							<li> <a href="{{url('home/address')}}">收货地址</a></li>
 						</ul>
 					</li>
 					<li class="person">
 						<a href="#">我的交易</a>
 						<ul>
-							<li><a href="order.html">订单管理</a></li>
-							<li> <a href="change.html">退款售后</a></li>
+							<li><a href="{{url('/home/order')}}">订单管理</a></li>
 						</ul>
 					</li>
 					<li class="person">
-						<a href="#">我的资产</a>
+						<a href="">我的资产</a>
 						<ul>
-							<li> <a href="coupon.html">优惠券 </a></li>
-							<li> <a href="bonus.html">红包</a></li>
-							<li> <a href="bill.html">账单明细</a></li>
+							<li> <a href="">优惠券 </a></li>
+							<li> <a href="">红包</a></li>
+							<li> <a href="">账单明细</a></li>
 						</ul>
 					</li>
 
 					<li class="person">
-						<a href="#">我的小窝</a>
+						<a href="">我的小窝</a>
 						<ul>
-							<li> <a href="collection.html">收藏</a></li>
-							<li> <a href="foot.html">足迹</a></li>
-							<li> <a href="comment.html">评价</a></li>
-							<li> <a href="news.html">消息</a></li>
+							<li> <a href="">收藏</a></li>
+							<li> <a href="">足迹</a></li>
+							<li> <a href="">消息</a></li>
 						</ul>
+					</li>
+
+				</ul>
 					</li>
 
 				</ul>

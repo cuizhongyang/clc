@@ -88,13 +88,24 @@ class AddressController extends Controller
         
         $data= $request->only("uid","name","phone","address");
         $data['addtime'] = date("Y-m-d H:i:s",time());
-         
-        $id = Address::insertGetId($data);
+        $uid = $data['uid'];
+            $id = Address::insertGetId($data);
         if($id>0){
            return redirect('home/address')->with('err','添加成功！'); 
         }else{
         // 失败
         return back()->with('err','添加失败！');
         }
+    }
+    //修改默认地址
+    public function status($id)
+    {  
+        $m = Address::where('id',$id)->update(['status' => 1]);
+        $uid = session('user')->id;
+        if(!empty($m)) {
+             Address::where([['uid',$uid],['id','!=',$id]])->update(['status' => 0]);
+        return back()->with('err','默认地址已设置！');
+         }
+        return back()->with('err','设置失败！');
     }
 }

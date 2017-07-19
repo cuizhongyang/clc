@@ -140,7 +140,11 @@
 						<div class="mod-vip">
 							<div class="m-baseinfo">
 								<a href="{{url('home/login')}}">
+                                @if(session("user"))
+									<img src="/{{ session('user')->picname }}">
+                                @else
 									<img src="{{asset('style/images/getAvatar.do.jpg') }}">
+                                @endif
 								</a>
 								<em>
 									<div class="menu-hd">

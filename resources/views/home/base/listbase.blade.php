@@ -34,7 +34,7 @@
 				</ul>
 				<ul class="message-r">
 					<div class="topMessage home">
-						<div class="menu-hd"><a href="/" target="_top" class="h">商城首页</a></div>
+						<div class="menu-hd"><a href="{{url('/')}}" target="_top" class="h">商城首页</a></div>
 					</div>
 					<div class="topMessage my-shangcheng">
 						<div class="menu-hd MyShangcheng"><a href="{{url('home/center')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
@@ -90,10 +90,8 @@
 		</div>
 		<!--引导 -->
 		<div class="navCir">
-			<li class="active"><a href="home.html"><i class="am-icon-home "></i>首页</a></li>
-			<li><a href="sort.html"><i class="am-icon-list"></i>分类</a></li>
-			<li><a href="shopcart.html"><i class="am-icon-shopping-basket"></i>购物车</a></li>	
-			<li><a href="../person/index.html"><i class="am-icon-user"></i>我的</a></li>					
+			<li class="active"><a href="{{url('/')}}"><i class="am-icon-home "></i>首页</a></li>
+			<li><a href="shopcart.html"><i class="am-icon-shopping-basket"></i>购物车</a></li>					
 		</div>
 
 
@@ -102,23 +100,10 @@
 			<div id="sidebar">
 				<div id="wrap">
 					<div id="prof" class="item ">
-						<a href="# ">
+						<a href="{{url('/home/center')}}">
 							<span class="setting "></span>
 						</a>
-						<div class="ibar_login_box status_login ">
-							<div class="avatar_box ">
-								<p class="avatar_imgbox "><img src="{{asset('style/images/no-img_mid_.jpg') }} " /></p>
-								<ul class="user_info ">
-									<li>用户名sl1903</li>
-									<li>级&nbsp;别普通会员</li>
-								</ul>
-							</div>
-							<div class="login_btnbox ">
-								<a href="# " class="login_order ">我的订单</a>
-								<a href="# " class="login_favorite ">我的收藏</a>
-							</div>
-							<i class="icon_arrow_white "></i>
-						</div>
+						
 
 					</div>
 					<div id="shopCart " class="item ">
@@ -172,7 +157,7 @@
 
 					<div class="quick_toggle ">
 						<li class="qtitem ">
-							<a href="# "><span class="kfzx "></span></a>
+							<a href="{{url('/home/qq')}}"><span class="kfzx "></span></a>
 							<div class="mp_tooltip ">客服中心<i class="icon_arrow_right_black "></i></div>
 						</li>
 						<!--二维码 -->

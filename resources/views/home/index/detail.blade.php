@@ -61,7 +61,7 @@
 
 			<div class="nav white">
 				<div class="logoBig">
-					<li><img style="width:200px;height:90px;margin-left:-50px;" src="{{asset(session('config')['logo']) }}" /></li>
+					<li><img style="width:200px;height:90px;margin-left:-180px;" src="{{asset(session('config')['logo']) }}" /></li>
 				</div>
 				<div class="search-bar pr">
 					<a name="index_none_header_sysc" href="#"></a>
@@ -285,7 +285,7 @@
 
 						<div class="pay">
 							<div class="pay-opt">
-							<a href="home.html"><span class="am-icon-home am-icon-fw">首页</span></a>
+							<a href="{{url('/')}}"><span class="am-icon-home am-icon-fw">首页</span></a>
 							<a><span class="am-icon-heart am-icon-fw">收藏</span></a>
 							
 							</div>
@@ -543,23 +543,10 @@
 				<div id="sidebar">
 					<div id="wrap">
 						<div id="prof" class="item">
-							<a href="#">
+							<a href="{{url('/home/center')}}">
 								<span class="setting"></span>
 							</a>
-							<div class="ibar_login_box status_login">
-								<div class="avatar_box">
-									<p class="avatar_imgbox"><img src="../images/no-img_mid_.jpg" /></p>
-									<ul class="user_info">
-										<li>用户名：sl1903</li>
-										<li>级&nbsp;别：普通会员</li>
-									</ul>
-								</div>
-								<div class="login_btnbox">
-									<a href="#" class="login_order">我的订单</a>
-									<a href="#" class="login_favorite">我的收藏</a>
-								</div>
-								<i class="icon_arrow_white"></i>
-							</div>
+							
 
 						</div>
 						<div id="shopCart" class="item">
@@ -613,7 +600,7 @@
 
 						<div class="quick_toggle">
 							<li class="qtitem">
-								<a href="#"><span class="kfzx"></span></a>
+								<a href="{{url('/home/qq')}}"><span class="kfzx"></span></a>
 								<div class="mp_tooltip">客服中心<i class="icon_arrow_right_black"></i></div>
 							</li>
 							<!--二维码 -->

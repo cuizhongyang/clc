@@ -5,19 +5,22 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
 
-		<title>修改地址</title>
-
-		<link href="{{asset('style/css/admin.css')}}" rel="stylesheet" type="text/css">
+		<title>发表评论</title>
+        <link href="{{asset('style/css/admin.css')}}" rel="stylesheet" type="text/css">
 		<link href="{{asset('style/css/amazeui.css')}}" rel="stylesheet" type="text/css">
-
 		<link href="{{asset('style/css/personal.css')}}" rel="stylesheet" type="text/css">
-		<link href="{{asset('style/css/addstyle.css')}}" rel="stylesheet" type="text/css">
+		<link href="{{asset('style/css/systyle.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('style/css/appstyle.css')}}" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="{{asset('style/js/jquery-1.7.2.min.js')}}"></script>
 		<script src="{{asset('style/js/jquery.min.js')}}" type="text/javascript"></script>
 		<script src="{{asset('style/layer/layer.js')}}" type="text/javascript"></script>
+        <script src="{{asset('style/js/jquery.min.js')}}"></script>
 		<script src="{{asset('style/js/amazeui.js')}}"></script>
-        
         <link rel="icon" href="{{asset('style/images/favicon.ico') }}" type="image/x-icon">
         <link rel="shortcut icon" href="{{asset('style/images/favicon.ico') }}" type="image/x-icon">
+        
+
+
 	</head>
 
 	<body>
@@ -75,124 +78,90 @@
 				</div>
 			</article>
 		</header>
-
-		<div class="nav-table">
-			<div class="long-title"><span class="all-goods">全部分类</span></div>
-			<div class="nav-cont">
-				<ul>
-					<li class="index"><a href="{{url('/')}}">首页</a></li>
-					<li class="qc"><a href="#">闪购</a></li>
-					<li class="qc"><a href="#">限时抢</a></li>
-					<li class="qc"><a href="#">团购</a></li>
-					<li class="qc last"><a href="#">大包装</a></li>
-				</ul>
-				<div class="nav-extra">
-					<i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利
-					<i class="am-icon-angle-right" style="padding-left: 10px;"></i>
-				</div>
+            <div class="nav-table">
+					   <div class="long-title"><span class="all-goods">全部分类</span></div>
+					   <div class="nav-cont">
+							<ul>
+								<li class="index"><a href="{{url('/')}}">首页</a></li>
+                                <li class="qc"><a href="#">闪购</a></li>
+                                <li class="qc"><a href="#">限时抢</a></li>
+                                <li class="qc"><a href="#">团购</a></li>
+                                <li class="qc last"><a href="#">大包装</a></li>
+							</ul>
+						    <div class="nav-extra">
+						    	<i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利
+						    	<i class="am-icon-angle-right" style="padding-left: 10px;"></i>
+						    </div>
+						</div>
 			</div>
-		</div>
-		<b class="line"></b>
-        
-        
+			<b class="line"></b>
 		<div class="center">
 			<div class="col-main">
 				<div class="main-wrap">
 
-					<div class="user-address">
+					<div class="user-comment">
 						<!--标题 -->
 						<div class="am-cf am-padding">
-							<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">地址管理</strong> / <small>Address&nbsp;list</small></div>
+							<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">发表评论</strong> / <small>Make&nbsp;Comments</small></div>
 						</div>
 						<hr/>
-                        
-                        
-                        </ul>
-						<div class="clear"></div>
-						<a class="new-abtn-type" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0}">添加新地址</a>
-						<!--例子-->
-						<div class="am-modal am-modal-no-btn" id="doc-modal-1">
-					<div class="user-address">
-						<div class="add-dress">
-						<!--标题 -->
-								<div class="am-cf am-padding">
-									<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">修改地址</strong> / <small>Add&nbsp;address</small></div>
+                        <form action="{{url('/home/commit/update')}}/{{$list['gid']}}" method="post">
+                        {{ csrf_field() }}
+						<div class="comment-main">
+							<div class="comment-list">
+								<div class="item-pic">
+									<a href="#" class="J_MakePoint">
+										<img src="{{asset($list['picname'])}}" class="itempic">
+									</a>
 								</div>
-                                @if (count($errors) > 0)
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li style="color:red;font-size:15px;margin-left:12px;">{{ $error }}</li>
-                                        @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
-								<hr/>
-                                @foreach($list as $vo)
-								<div class="am-u-md-12 am-u-lg-8" style="margin-top: 20px;">
-									<form action="{{url('/home/address/update')}}/{{$vo->id}}" method="post" class="am-form am-form-horizontal">
-                                        {{ csrf_field() }}
-										<div class="am-form-group">
-											<label for="user-name" class="am-form-label">收货人：</label>
-											<div class="am-form-content">
-												<input type="text" name="name" value="{{$vo->name}}" id="user-name" placeholder="收货人">
-											</div>
-										</div>
 
-										<div class="am-form-group">
-											<label for="user-phone" class="am-form-label">手机号码：</label>
-											<div class="am-form-content">
-												<input id="user-phone" name="phone" value="{{$vo->phone}}" placeholder="手机号必填" type="text">
-											</div>
+								<div class="item-title">
+
+									<div class="item-name">
+										<a href="#">
+											<p class="item-basic-info">{{$list['name']}}</p>
+										</a>
+									</div>
+									<div class="item-info">
+										<div class="info-little">
+											<span>颜色：洛阳牡丹</span>
+											<span>包装：裸装</span>
 										</div>
-										<div class="am-form-group">
-											<label for="user-address" class="am-form-label">所在地：</label>
-											<div class="am-form-content address">
-												<input id="address" name="address" value="{{$vo->address}}" placeholder="请输入详细地址" type="text">
-											</div>
-										</div>
-										<div class="am-form-group">
-											<div class="am-u-sm-9 am-u-sm-push-3">
-												<button type="submit" class="am-btn am-btn-danger">保存</button>
-												<a href="{{url('/home/address')}}" class="am-close am-btn am-btn-danger" data-am-modal-close>取消</a>
-											</div>
-										</div>
-									</form>
+										<div class="item-price">
+											价格：<strong>{{$list['price']}}元</strong>
+										</div>										
+									</div>
 								</div>
-                                @endforeach
-							</div>
-                            </div>
+								<div class="clear"></div>
+								<div class="item-comment">
+									<textarea name="content" placeholder="请写下对宝贝的感受吧，对他人帮助很大哦！"></textarea>
+								</div>
+								<div class="item-opinion">
+                                <li><i class="op1"></i><input type="radio" name="grage" value="1">好评</li>
+                                <li><i class="op2"></i><input type="radio" name="grage" value="2">中评</li>
+                                <li><i class="op3"></i><input type="radio" name="grage" value="3">差评</li>
+								</div>
+							</div>							
+                            <div class="info-btn">
+                                <div class="am-btn am-btn-danger"><button type="submit" class="am-btn am-btn-danger">发表评论</button></div>
+                            </div>	
+                        </form>
+                            <script type="text/javascript">
+                                $(document).ready(function() {
+                                    $(".comment-list .item-opinion li").click(function() {	
+                                        $(this).prevAll().children('i').removeClass("active");
+                                        $(this).nextAll().children('i').removeClass("active");
+                                        $(this).children('i').addClass("active");
+                                        
+                                    });
+                             })
+                            </script>					
+					
+												
+							
 						</div>
 
 					</div>
-                    <form action="" method="post" name="myform" style="display:none;">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-                        <input type="hidden" name="_method" value="delete"/>
-                    </form>
-					<script type="text/javascript">
-						$(document).ready(function() {							
-							$(".new-option-r").click(function() {
-								$(this).parent('.user-addresslist').addClass("defaultAddr").siblings().removeClass("defaultAddr");
-							});
-							
-							var $ww = $(window).width();
-							if($ww>640) {
-								$("#doc-modal-1").removeClass("am-modal am-modal-no-btn")
-							}
-							
-						})
-                        
-                        
-					</script>
-                    @if (session('err'))
-                        <div class="alert alert-success">
-                            <script type="text/javascript">
-                            layer.alert('{{ session('err') }}', {icon: 5});
-                            </script>
-                        </div>
-                    @endif
-
-					<div class="clear"></div>
 
 				</div>
 				<!--底部-->

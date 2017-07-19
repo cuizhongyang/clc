@@ -20,7 +20,7 @@
 	<body>
 
 		<div class="login-boxtitle">
-			<a href="home.html"><img alt="logo" src="{{asset('style/images/logobig.png')}}" /></a>
+			<a href="home.html"><img style="width:200px;height:90px;" src="{{asset(session('config')['logo']) }}" /></a>
 		</div>
 <div class="login-banner">
 			<div class="login-main">
