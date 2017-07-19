@@ -64,9 +64,12 @@ Route::post('/home/address/update/{id}',"Home\AddressController@doedit");
 Route::post('/home/address/create',"Home\AddressController@create");
 //加载购物车
 Route::get('/home/shopcat',"Home\ShopcatController@add");
-
-
-
+Route::get('/home/shopcat/index',"Home\ShopcatController@index");
+//删除购物车商品
+Route::get('/home/shopcat/del/{id}',"Home\ShopcatController@del");
+Route::get('home/shopcat/cart', 'Home\ShopcatController@cart');
+//购物车提交订单
+Route::get('home/shopcat/doit', 'Home\ShopcatController@doit');
 //执行退出
 Route::get('/home/loginout',"Home\LoginController@loginout");
 

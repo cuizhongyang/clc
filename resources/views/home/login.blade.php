@@ -13,7 +13,7 @@
 		<link rel="stylesheet" href="{{asset('style/css/amazeui.css')}}" />
 		<link href="{{asset('style/css/dlstyle.css')}}" rel="stylesheet" type="text/css">
         <link rel="icon" href="{{asset('style/images/favicon.ico')}}" type="image/x-icon">
-        <link rel="shortcut icon" href="{{asset('style/images/favicon.ico')}}"" type="image/x-icon">
+        <link rel="shortcut icon" href="{{asset('style/images/favicon.ico')}}" type="image/x-icon">
 	</head>
 
 	<body>
